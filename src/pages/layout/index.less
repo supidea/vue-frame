@@ -1,0 +1,32 @@
+@import '../../assets/styles/variables.less';
+.l-side {
+  // position: relative;
+}
+.l-header {
+  background: #fff;
+  border-bottom: 1px solid @baseBorderColor;
+}
+.side-logo{
+  background: red;
+  position: relative;
+}
+.side-collapse{
+  position: absolute;
+  right: -13px;
+  top: 12px;
+  width: 26px;
+  height: 26px;
+  background-color: @blue;
+  border-radius: 50%;
+}
+.side-menu{
+  position: absolute;
+  top: 50px;
+  left: 0;
+  bottom: 0;
+  width: 201px;
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    width: 0px;
+  }
+}
