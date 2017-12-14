@@ -2,9 +2,7 @@
   <el-container style="height:100%;">
     <el-aside width="201px" class="l-side">
       <div class="side-logo" style="height: 50px;width:300px;">
-        <!-- <span class="side-collapse"></span>            -->
       </div>
-      <span class="side-collapse"></span>
       <div class="side-menu">
         <el-menu :default-openeds="['1', '3']" background-color="#3587ff" text-color="#fff" active-text-color="#ffd04b" style="height:100%">
           <el-submenu index="1">
