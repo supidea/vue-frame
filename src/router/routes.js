@@ -37,13 +37,42 @@ export const addRoutes = [
     children: [
       {
         path: '',
-        name: 'Paper_index',
+        name: 'Paper_Index',
+        meta: {
+          title: '试卷库'
+        },
         component: () => import('@/pages/paper')
       },
       {
-        path: 'detail',
+        path: ':id',
         name: 'Paper_Detail',
+        meta: {
+          title: '试卷详情'
+        },
         component: () => import('@/pages/paper/Detail.vue')
+      }
+    ]
+  },
+  {
+    path: '/question',
+    name: 'Question',
+    component: Layout,
+    children: [
+      {
+        path: '',
+        name: 'Question_List',
+        meta: {
+          title: '题库'
+        },
+        component: () => import('@/pages/question/List')
+      },
+      {
+        path: ':id',
+        name: 'Question_Detail',
+        meta: {
+          title: '题详情'
+        },
+        component: () => import('@/pages/question/Detail.vue')
       }
     ]
   }

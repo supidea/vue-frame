@@ -1,1 +1,1 @@
-
+export const UPDATE_MENULIST = 'UPDATE_MENULIST'
