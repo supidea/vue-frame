@@ -17,7 +17,7 @@ router.beforeEach((to, from, next) => {
 
 router.afterEach((to, from, next) => {
   let tit = ''
-  if (to.meta.title) tit = to.meta.title + '-'
+  if (to.meta && to.meta.title) tit = to.meta.title + '-'
   window.document.title = `${tit}教师工作平台`
   NProgress.done()
 })
