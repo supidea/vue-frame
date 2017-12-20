@@ -8,7 +8,7 @@ export const baseRoutes = [
     meta: {
       title: '403-权限不够'
     },
-    component: () => import('@/pages/error/403.vue')
+    component: () => import('@/pages/error/403')
   },
   {
     path: '/404',
@@ -16,7 +16,7 @@ export const baseRoutes = [
     meta: {
       title: '404-页面不存在'
     },
-    component: () => import('@/pages/error/404.vue')
+    component: () => import('@/pages/error/404')
   },
   {
     path: '/500',
@@ -24,7 +24,7 @@ export const baseRoutes = [
     meta: {
       title: '500-服务器内部错误'
     },
-    component: () => import('@/pages/error/500.vue')
+    component: () => import('@/pages/error/500')
   }
 ]
 
@@ -34,6 +34,9 @@ export const addRoutes = [
     path: '/paper',
     name: 'Paper',
     component: Layout,
+    meta: {
+      title: '试卷库'
+    },
     children: [
       {
         path: '',
@@ -49,7 +52,7 @@ export const addRoutes = [
         meta: {
           title: '试卷详情'
         },
-        component: () => import('@/pages/paper/Detail.vue')
+        component: () => import('@/pages/paper/detail')
       }
     ]
   },
@@ -57,6 +60,9 @@ export const addRoutes = [
     path: '/question',
     name: 'Question',
     component: Layout,
+    meta: {
+      title: '题库'
+    },
     children: [
       {
         path: '',
@@ -64,7 +70,7 @@ export const addRoutes = [
         meta: {
           title: '题库'
         },
-        component: () => import('@/pages/question/List')
+        component: () => import('@/pages/question/list')
       },
       {
         path: ':id',
@@ -72,9 +78,17 @@ export const addRoutes = [
         meta: {
           title: '题详情'
         },
-        component: () => import('@/pages/question/Detail.vue')
+        component: () => import('@/pages/question/detail')
       }
     ]
+  },
+  {
+    path: '/textbook',
+    name: 'Textbook',
+    meta: {
+      title: '精品教材'
+    },
+    component: () => import('@/pages/textbook')
   }
 ]
 

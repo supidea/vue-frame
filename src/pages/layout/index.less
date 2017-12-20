@@ -1,9 +1,9 @@
 @import '../../assets/styles/variables.less';
 .main-side{
-  position: relative;
-  transition: width .2s ease-out;
-  overflow: hidden;
+  transition: width .3s ease-in-out;
+  overflow: unset;
   background: @blue;
+  height: 100%;
   &.hide-side{
     width: 64px !important;
   }
@@ -15,8 +15,8 @@
     }
   }
   .side-menu{
-    height: 100%;
-    overflow-y: auto;
+    // height: 100%;
+    // overflow-y: auto;
     width: 64px;
     border-right: 0 none;
     &::-webkit-scrollbar {
