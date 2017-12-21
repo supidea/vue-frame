@@ -3,19 +3,19 @@
     <el-aside :width="isCollapse?'64px':'200px'" class="l-side" :class="{'is-collapse': isCollapse}">
       <div class="side-logo"></div>
       <div class="side-menu">
-        <el-menu default-active="1-1" :collapse="isCollapse" background-color="#3587ff" text-color="#fff" active-text-color="#ffd04b">
+        <el-menu :router="true" default-active="1-1" :collapse="isCollapse" background-color="#3587ff" text-color="#fff" active-text-color="#ffd04b">
           <template v-for="item in menuList">
-            <el-submenu :index="item.path" :key="item.path" v-if="item.children && item.children.length > 0">
+            <el-submenu :index="item.path" :key="item.path" v-if="item.children && item.children.length > 0 && item.dropdown">
               <template slot="title">
                 <i class="el-icon-menu"></i>
                 <span>{{item.meta && item.meta.title}}</span>
               </template>
-              <el-menu-item :title="sub.path" :index="sub.path" v-for="sub in item.children" :key="sub.path" :route="sub">
+              <el-menu-item :title="sub.path" :route="{path: item.path}" :index="sub.path" v-for="sub in item.children" :key="sub.path">
                 <i class="sidebar__sub-icon"></i>
                 <span>{{sub.meta && sub.meta.title}}</span>
               </el-menu-item>
             </el-submenu>
-            <el-menu-item :index="item.path" :key="item.path" v-else>
+            <el-menu-item :index="item.path" :route="{path: item.path}" :key="item.path" v-else>
               <i class="el-icon-menu"></i>
               <span slot="title">{{item.meta && item.meta.title}}</span>
             </el-menu-item>
@@ -28,8 +28,14 @@
         <span class="side-collapse iconfont icon-zhankai" :class="{'is-collapse': isCollapse}" @click="onCollapse"></span>
       </el-header>
       <el-main class="l-main">
+        <el-breadcrumb separator-class="el-icon-arrow-right" class="m-breadcrumb">
+          <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+          <el-breadcrumb-item>活动管理</el-breadcrumb-item>
+          <el-breadcrumb-item>活动列表</el-breadcrumb-item>
+          <el-breadcrumb-item>活动详情</el-breadcrumb-item>
+        </el-breadcrumb>
         <keep-alive :include="cachePage">
-          <router-view />
+          <router-view class="l-content" />
         </keep-alive>
       </el-main>
     </el-container>
@@ -72,8 +78,8 @@ export default {
     background-repeat: no-repeat;
     background-position: center center;
   }
-  &.is-collapse .side-logo{
-    background-image: url('/static/images/min-logo.png')
+  &.is-collapse .side-logo {
+    background-image: url('/static/images/min-logo.png');
   }
   .side-menu {
     flex: 1;
@@ -96,6 +102,7 @@ export default {
 .l-header {
   background: #fff;
   position: relative;
+  border-bottom: 1px solid @baseBorderColor;
   .side-collapse {
     position: absolute;
     left: -13px;
@@ -113,6 +120,20 @@ export default {
     &.is-collapse {
       transform: rotate(180deg);
     }
+  }
+}
+.l-main {
+  display: flex;
+  flex-direction: column;
+}
+.l-content {
+  flex: 1;
+  margin-top: 20px;
+}
+.m-breadcrumb{
+  font-size: 12px;
+  .el-breadcrumb__inner, .el-breadcrumb__inner a{
+    font-weight: normal;
   }
 }
 </style>

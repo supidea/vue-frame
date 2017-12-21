@@ -34,6 +34,7 @@ export const addRoutes = [
     path: '/paper',
     name: 'Paper',
     component: Layout,
+    dropdown: true,
     meta: {
       title: '试卷库'
     },
@@ -71,14 +72,6 @@ export const addRoutes = [
           title: '题库'
         },
         component: () => import('@/pages/question/list')
-      },
-      {
-        path: ':id',
-        name: 'Question_Detail',
-        meta: {
-          title: '题详情'
-        },
-        component: () => import('@/pages/question/detail')
       }
     ]
   },
