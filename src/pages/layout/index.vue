@@ -10,7 +10,7 @@
                 <i class="el-icon-menu"></i>
                 <span>{{item.meta && item.meta.title}}</span>
               </template>
-              <el-menu-item :title="sub.path" :route="{path: item.path}" :index="sub.path" v-for="sub in item.children" :key="sub.path">
+              <el-menu-item :route="{path: item.path}" :index="sub.path" v-for="sub in item.children" :key="sub.path" v-if="!sub.hidden">
                 <i class="sidebar__sub-icon"></i>
                 <span>{{sub.meta && sub.meta.title}}</span>
               </el-menu-item>
@@ -26,14 +26,12 @@
     <el-container>
       <el-header class="l-header" height="50px">
         <span class="side-collapse iconfont icon-zhankai" :class="{'is-collapse': isCollapse}" @click="onCollapse"></span>
+        <div class="l-header__right">
+          <div class="header-menu"></div>
+        </div>
       </el-header>
       <el-main class="l-main">
-        <el-breadcrumb separator-class="el-icon-arrow-right" class="m-breadcrumb">
-          <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-          <el-breadcrumb-item>活动管理</el-breadcrumb-item>
-          <el-breadcrumb-item>活动列表</el-breadcrumb-item>
-          <el-breadcrumb-item>活动详情</el-breadcrumb-item>
-        </el-breadcrumb>
+        <v-breadcrumb />
         <keep-alive :include="cachePage">
           <router-view class="l-content" />
         </keep-alive>
@@ -43,6 +41,7 @@
 </template>
 
 <script>
+import vBreadcrumb from '@/components/breadcrumb'
 import { mapState } from 'vuex'
 export default {
   data() {
@@ -60,6 +59,9 @@ export default {
     onCollapse() {
       this.isCollapse = !this.isCollapse
     }
+  },
+  components: {
+    vBreadcrumb
   }
 }
 </script>
@@ -103,6 +105,7 @@ export default {
   background: #fff;
   position: relative;
   border-bottom: 1px solid @baseBorderColor;
+  display: flex;
   .side-collapse {
     position: absolute;
     left: -13px;
@@ -129,11 +132,5 @@ export default {
 .l-content {
   flex: 1;
   margin-top: 20px;
-}
-.m-breadcrumb{
-  font-size: 12px;
-  .el-breadcrumb__inner, .el-breadcrumb__inner a{
-    font-weight: normal;
-  }
 }
 </style>

@@ -50,6 +50,7 @@ export const addRoutes = [
       {
         path: ':id',
         name: 'Paper_Detail',
+        hidden: true,
         meta: {
           title: '试卷详情'
         },
