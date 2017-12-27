@@ -10,7 +10,7 @@
                 <i class="el-icon-menu"></i>
                 <span>{{item.meta && item.meta.title}}</span>
               </template>
-              <el-menu-item :route="{path: item.path}" :index="sub.path" v-for="sub in item.children" :key="sub.path" v-if="!sub.hidden">
+              <el-menu-item :route="{name: sub.name}" :index="sub.path" v-for="sub in item.children" :key="sub.path" v-if="!sub.hidden">
                 <i class="sidebar__sub-icon"></i>
                 <span>{{sub.meta && sub.meta.title}}</span>
               </el-menu-item>

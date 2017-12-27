@@ -73,6 +73,14 @@ export const addRoutes = [
           title: '题库'
         },
         component: () => import('@/pages/question/list')
+      },
+      {
+        path: ':id',
+        name: 'Question_Detail',
+        meta: {
+          title: '题库详情'
+        },
+        component: () => import('@/pages/question/detail')
       }
     ]
   },
@@ -83,6 +91,25 @@ export const addRoutes = [
       title: '精品教材'
     },
     component: () => import('@/pages/textbook')
+  },
+  {
+    path: '/my',
+    name: 'My',
+    meta: {
+      title: '个人中心'
+    },
+    dropdown: true,
+    component: Layout,
+    children: [
+      {
+        path: 'schedule',
+        name: 'My_Schedule',
+        meta: {
+          title: '我的日程表'
+        },
+        component: () => import('@/pages/my/schedule')
+      }
+    ]
   }
 ]
 
