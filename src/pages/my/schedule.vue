@@ -3,7 +3,7 @@
     <div class="teacher-schedule__hd">
       <img src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1161209730,2018761545&fm=27&gp=0.jpg" alt="" class="teacher-schedule-avatar">
       <div class="teacher-schedule-profile">
-        <h3 class="teacher-schedule-profile__name">张婷婷老师的日程安排</h3>
+        <h3 class="teacher-schedule-profile__name" @click="getSchedule">张婷婷老师的日程安排</h3>
         <p class="teacher-schedule-profile__des">厦门地区个性化团队
           <span class="teacher-schedule-profile__spit">|</span>数学</p>
       </div>
@@ -30,6 +30,9 @@
           <li class="teacher-schedule-table__col"></li>
           <li class="teacher-schedule-table__col"></li>
         </ul>
+        <div class="teacher-schedule-course__wrap">
+
+        </div>
         <schedule-course :is-reserve="false" height="200px" top="100px" left="200px" />
         <schedule-course :is-reserve="false" :has-bind="true" height="100px" top="200px" left="1400px" />
       </div>
@@ -41,6 +44,8 @@
 import moment from 'moment'
 import vDate from './components/date'
 import ScheduleCourse from './components/schedule-course'
+import { user } from '../../api'
+
 export default {
   data() {
     return {
@@ -52,7 +57,9 @@ export default {
     days() {
       let arr = []
       for (let i = 0; i < this.daysSize; i++) {
-        let date = moment(this.startDate).add(i, 'd').format()
+        let date = moment(this.startDate)
+          .add(i, 'd')
+          .format()
         arr.push(date)
       }
       return arr
@@ -70,6 +77,9 @@ export default {
     },
     changeDate() {
       this.$refs['datePicker'].showPicker()
+    },
+    getSchedule() {
+      user.getSchedule('2017-12-28', '2018-01-03')
     }
   },
   filters: {

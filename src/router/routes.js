@@ -34,7 +34,6 @@ export const addRoutes = [
     path: '/paper',
     name: 'Paper',
     component: Layout,
-    dropdown: true,
     meta: {
       title: '试卷库'
     },
@@ -113,7 +112,7 @@ export const addRoutes = [
   }
 ]
 
-// // 作为Layout组件的子页面展示但是不在左侧菜单显示的路由写在otherRoutes里
+// 作为Layout组件的子页面展示但是不在左侧菜单显示的路由写在otherRoutes里
 export const routes = [
   ...baseRoutes,
   ...addRoutes,

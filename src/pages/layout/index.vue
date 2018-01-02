@@ -26,8 +26,19 @@
     <el-container>
       <el-header class="l-header" height="50px">
         <span class="side-collapse iconfont icon-zhankai" :class="{'is-collapse': isCollapse}" @click="onCollapse"></span>
+        <div class="l-header__left"></div>
         <div class="l-header__right">
-          <div class="header-menu"></div>
+          <span class="full-screen">sd</span>
+          <el-dropdown class="user-avatar">
+            <span class="el-dropdown-link">
+              下拉菜单<i class="el-icon-arrow-down el-icon--right"></i>
+            </span>
+            <img class="user-avatar__img" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3448484253,3685836170&fm=27&gp=0.jpg" alt="">
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item>个人中心</el-dropdown-item>
+              <el-dropdown-item divided>退出登录</el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
         </div>
       </el-header>
       <el-main class="l-main">
@@ -106,6 +117,8 @@ export default {
   position: relative;
   border-bottom: 1px solid @baseBorderColor;
   display: flex;
+  align-items: center;
+  justify-content: space-between;
   .side-collapse {
     position: absolute;
     left: -13px;
@@ -123,6 +136,23 @@ export default {
     &.is-collapse {
       transform: rotate(180deg);
     }
+  }
+  &__right{
+    display: flex;
+    align-items: center;
+  }
+  .user-avatar{
+    display: flex;
+    align-items: center;
+    &__img{
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      margin-left: 10px;
+    }
+  }
+  .el-dropdown-link{
+    cursor: pointer;
   }
 }
 .l-main {
