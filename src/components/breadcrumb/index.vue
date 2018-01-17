@@ -1,7 +1,7 @@
 <template>
   <el-breadcrumb separator-class="el-icon-arrow-right" class="m-breadcrumb">
-    <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-    <el-breadcrumb-item :key="item.path" v-for="item in list">{{item.meta.title}}</el-breadcrumb-item>
+    <el-breadcrumb-item>首页</el-breadcrumb-item>
+    <el-breadcrumb-item :key="item.name" v-for="item in list" v-if="item.meta && !item.meta.noBreadcrumb">{{item.meta.title}}</el-breadcrumb-item>
   </el-breadcrumb>
 </template>
 
@@ -11,9 +11,6 @@ export default {
     list() {
       return this.$route.matched
     }
-  },
-  mounted() {
-    console.log(this.$route.matched)
   }
 }
 </script>

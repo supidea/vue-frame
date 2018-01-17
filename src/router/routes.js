@@ -34,13 +34,15 @@ export const addRoutes = [
     path: '/paper',
     name: 'Paper',
     component: Layout,
+    icon: 'shijuan',
     meta: {
+      noBreadcrumb: true,
       title: '试卷库'
     },
     children: [
       {
         path: '',
-        name: 'Paper_Index',
+        name: 'Paper_List',
         meta: {
           title: '试卷库'
         },
@@ -61,6 +63,7 @@ export const addRoutes = [
     path: '/question',
     name: 'Question',
     component: Layout,
+    icon: 'timu',
     meta: {
       title: '题库'
     },
@@ -69,6 +72,7 @@ export const addRoutes = [
         path: '',
         name: 'Question_List',
         meta: {
+          noBreadcrumb: true,
           title: '题库'
         },
         component: () => import('@/pages/question/list')
@@ -86,6 +90,7 @@ export const addRoutes = [
   {
     path: '/textbook',
     name: 'Textbook',
+    icon: 'jiaocai',
     meta: {
       title: '精品教材'
     },
@@ -97,6 +102,7 @@ export const addRoutes = [
     meta: {
       title: '个人中心'
     },
+    icon: 'geren',
     dropdown: true,
     component: Layout,
     children: [

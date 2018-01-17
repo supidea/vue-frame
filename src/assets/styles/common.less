@@ -1,3 +1,23 @@
+[v-cloak]{
+  display: none;
+}
+
 html,body{
+  margin: 0;
+  padding: 0;
   height: 100%;
+  width: 100%;
+}
+html:-webkit-full-screen{
+  background-color: @bodyBackground
+}
+body{
+  font-family: @baseFontFamily;
+  font-size: @baseFontSize;
+  line-height: @baseLineHeight;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: @textColor;
+  background: @bodyBackground;
+  word-break: break-word;
 }
