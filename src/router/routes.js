@@ -34,16 +34,17 @@ export const addRoutes = [
     path: '/paper',
     name: 'Paper',
     component: Layout,
-    icon: 'shijuan',
+    redirect: '/paper/list',
     meta: {
-      noBreadcrumb: true,
+      icon: 'shijuan',
       title: '试卷库'
     },
     children: [
       {
-        path: '',
+        path: 'list',
         name: 'Paper_List',
         meta: {
+          hidden: true,
           title: '试卷库'
         },
         component: () => import('@/pages/paper')
@@ -51,8 +52,8 @@ export const addRoutes = [
       {
         path: ':id',
         name: 'Paper_Detail',
-        hidden: true,
         meta: {
+          hidden: true,
           title: '试卷详情'
         },
         component: () => import('@/pages/paper/detail')
@@ -63,13 +64,14 @@ export const addRoutes = [
     path: '/question',
     name: 'Question',
     component: Layout,
-    icon: 'timu',
+    redirect: '/question/list',
     meta: {
+      icon: 'timu',
       title: '题库'
     },
     children: [
       {
-        path: '',
+        path: 'list',
         name: 'Question_List',
         meta: {
           noBreadcrumb: true,
@@ -90,8 +92,8 @@ export const addRoutes = [
   {
     path: '/textbook',
     name: 'Textbook',
-    icon: 'jiaocai',
     meta: {
+      icon: 'jiaocai',
       title: '精品教材'
     },
     component: () => import('@/pages/textbook')
@@ -100,10 +102,9 @@ export const addRoutes = [
     path: '/my',
     name: 'My',
     meta: {
-      title: '个人中心'
+      title: '个人中心',
+      icon: 'geren'
     },
-    icon: 'geren',
-    dropdown: true,
     component: Layout,
     children: [
       {

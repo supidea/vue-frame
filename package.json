@@ -57,6 +57,7 @@
     "jest-serializer-vue": "^0.3.0",
     "less": "^2.7.3",
     "less-loader": "^4.0.5",
+    "mockjs": "^1.0.1-beta3",
     "nightwatch": "^0.9.12",
     "node-notifier": "^5.1.2",
     "nprogress": "^0.2.0",

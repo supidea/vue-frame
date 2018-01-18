@@ -7,6 +7,11 @@ import store from './store'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 
+// 生产环境下不引入mockjs
+if (process.env.NODE_ENV !== 'production') {
+  require('@/mockjs')
+}
+
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 /* eslint-disable no-new */

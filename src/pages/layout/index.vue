@@ -1,11 +1,25 @@
 <template>
   <el-container style="height: 100%;">
     <el-aside :width="isCollapse?'64px':'200px'" class="l-side" :class="{'is-collapse': isCollapse}">
-      <div class="side-logo"></div>
+      <div class="side-logo" :title="$route.name"></div>
       <div class="side-menu">
         <el-menu :router="true" :default-active="defaultActive" :collapse="isCollapse" background-color="#3587ff" text-color="#fff" active-text-color="#409eff">
           <template v-for="item in menuList">
-            <el-submenu :index="item.name" :title="item.name" :key="item.path" v-if="item.children && item.children.length > 0 && item.dropdown">
+            <el-menu-item :title="item.path" :index="item.name" :route="item" :key="item.name" >
+              <i class="iconfont side-menu__icon" :class="['icon-'+item.meta.icon]"></i>
+              <span slot="title">{{item.meta && item.meta.title}}</span>
+            </el-menu-item>
+            <!-- <el-submenu :index="item.path" :key="item.path">
+              <template slot="title">
+                <i class="iconfont side-menu__icon" :class="['icon-'+item.meta.icon]"></i>
+                <span>{{item.meta && item.meta.title}}</span>
+              </template>
+              <el-menu-item :title="sub.path" :index="sub.path" v-for="sub in item.children" :key="sub.path" :route="sub">
+                <i class="sidebar__sub-icon"></i>
+                <span>{{sub.meta && sub.meta.title}}</span>
+              </el-menu-item>
+            </el-submenu> -->
+            <!-- <el-submenu :index="item.name" :title="item.name" :key="item.name" v-if="item.children && item.children.length > 0">
               <template slot="title">
                 <i class="iconfont side-menu__icon" :class="['icon-'+item.icon]"></i>
                 <span>{{item.meta && item.meta.title}}</span>
@@ -14,11 +28,11 @@
                 <i class="sidebar__sub-icon"></i>
                 <span>{{sub.meta && sub.meta.title}}</span>
               </el-menu-item>
-            </el-submenu>
-            <el-menu-item :index="item.name" :title="item.name" :route="{name: item.name}" :key="item.path" v-else>
+            </el-submenu> -->
+            <!-- <el-menu-item :index="item.name" :title="item.name" :route="{name: item.name}" :key="item.name" v-else>
               <i class="iconfont side-menu__icon" :class="['icon-'+item.icon]"></i>
               <span slot="title">{{item.meta && item.meta.title}}</span>
-            </el-menu-item>
+            </el-menu-item> -->
           </template>
         </el-menu>
       </div>
@@ -78,21 +92,14 @@ export default {
     }),
     defaultActive() {
       let matched = this.$route.matched
-      console.log(matched)
-      console.log(this.$route.name)
-      // if (matched instanceof Array && matched.length > 0) {
-      //   let
-      //   return matched[matched.length - 1].name
-      // }
-      // console.log(matched)
-      // if (matched instanceof Array && matched.length > 0) {
-      //   for (let i = matched.length - 1; i >= 0; i--) {
-      //     let _route = matched[i]
-      //     if (_route.meta && _route.meta.isMenu === 1) {
-      //       return _route.path
-      //     }
-      //   }
-      // }
+      if (matched instanceof Array && matched.length > 0) {
+        for (let i = matched.length - 1; i >= 0; i--) {
+          let _route = matched[i]
+          if (_route.meta && !_route.meta.hidden) {
+            return _route.name
+          }
+        }
+      }
       return this.$route.name
     }
   },
