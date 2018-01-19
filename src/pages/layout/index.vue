@@ -54,7 +54,7 @@
               李太白
               <i class="el-icon-arrow-down el-icon--right"></i>
             </span>
-            <img class="user-avatar__img" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3448484253,3685836170&fm=27&gp=0.jpg" alt="">
+            <img class="user-avatar__img" src="../../assets/images/avatar.svg" alt="">
             <el-dropdown-menu slot="dropdown">
               <el-dropdown-item>个人中心</el-dropdown-item>
               <el-dropdown-item divided>退出登录</el-dropdown-item>

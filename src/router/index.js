@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
+import { app } from '../api'
 import { routes } from './routes'
 
 Vue.use(Router)
@@ -12,6 +13,9 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   NProgress.start()
+  app.getAsyncRoutes().then(res => {
+    console.log(res)
+  })
   next()
 })
 
