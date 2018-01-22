@@ -1,8 +1,14 @@
-const getAsyncRoutes = () => {
-  return {
-    success: true,
-    message: '查询成功！',
-    data: [
+import Mock from 'mockjs'
+
+const getUserInfo = Mock.mock({
+  success: true,
+  message: '成功',
+  data: {
+    id: '@id',
+    name: '@cname',
+    avatar: Mock.Random.image('60x60'),
+    role: 'admin',
+    routes: [
       {
         path: '/paper',
         name: 'Paper',
@@ -24,6 +30,8 @@ const getAsyncRoutes = () => {
       }
     ]
   }
-}
+})
 
-export default getAsyncRoutes
+export default {
+  getUserInfo
+}
