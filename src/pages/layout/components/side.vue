@@ -1,19 +1,19 @@
 <template>
   <div class="side-menu">
-    <el-menu :router="true" default-active="Paper_List" :collapse="sidebar.isCollapse" background-color="#3587ff" text-color="#fff" active-text-color="#409eff">
-      <template v-for="item in routes">
-        <el-menu-item :index="item.path" :route="item" :key="item.path" v-if="item.meta.noDropdown">
-          <i class="sidebar__icon" :class="['sidebar__icon-'+item.meta.icon]"></i>
+    <el-menu :router="true" :default-active="$route.path" :collapse="sidebar.isCollapse" background-color="#3587ff" text-color="#fff" active-text-color="#409eff">
+      <template v-for="item in routes" v-if="!item.hidden && item.children">
+        <el-menu-item :index="item.path" :route="item" :key="item.path" v-if="item.children.length === 1">
+          <i class="side-menu__icon iconfont" :class="['icon-'+item.meta.icon]"></i>
           <span slot="title">{{item.meta && item.meta.title}}</span>
         </el-menu-item>
-        <el-submenu :index="item.path" :key="item.path" v-else-if="item.children && item.children.length > 0">
+        <el-submenu :index="item.path" :key="item.path" v-else>
           <template slot="title">
-            <i class="sidebar__icon" :class="['sidebar__icon-'+item.meta.icon]"></i>
-            <span :title="item.path">{{item.meta && item.meta.title}}</span>
+            <i class="side-menu__icon iconfont" v-if="item.meta && item.meta.icon" :class="['icon-'+item.meta.icon]"></i>
+            <span v-if="item.meta && item.meta.title">{{item.meta.title}}</span>
           </template>
-          <el-menu-item v-if="sub.meta && sub.meta.isMenu === 1" :title="sub.path" :index="sub.path" v-for="sub in item.children" :key="sub.path" :route="sub">
-            <i class="sidebar__sub-icon"></i>
-            <span>{{sub.meta && sub.meta.title}}</span>
+          <el-menu-item :title="sub.path" :index="sub.path" v-for="sub in item.children" :key="sub.path" :route="sub">
+            <i class="side-menu__sub-icon"></i>
+            <span v-if="sub.meta && sub.meta.title">{{sub.meta.title}}</span>
           </el-menu-item>
         </el-submenu>
       </template>
@@ -64,7 +64,7 @@ export default {
     margin-right: 5px;
     font-weight: bold;
   }
-  .sidebar__sub-icon {
+  &__sub-icon {
     width: 6px;
     height: 6px;
     border-radius: 50%;

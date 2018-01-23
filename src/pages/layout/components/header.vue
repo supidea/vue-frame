@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div class="main-header">
     <span class="side-collapse iconfont icon-zhankai" :class="{'is-collapse': sidebar.isCollapse}" @click="toggleSideBar"></span>
-    <div class="l-header__left"></div>
-    <div class="l-header__right">
+    <div class="main-header__left"></div>
+    <div class="main-header__right">
       <v-full-screen class="header-bar__btn" v-model="isFullScreen" />
       <v-message-tip class="header-bar__btn" v-model="messageCount" />
       <el-tooltip class="header-bar__btn" effect="dark" content="草稿箱" placement="bottom">
@@ -55,16 +55,15 @@ export default {
 
 <style lang="less">
 @import '../../../assets/styles/variables.less';
-.l-header {
-  background: #fff;
-  position: relative;
-  border-bottom: 1px solid @baseBorderColor;
+.main-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  height: 50px;
+  position: relative;
   .side-collapse {
     position: absolute;
-    left: -13px;
+    left: -33px;
     top: 12px;
     width: 26px;
     height: 26px;

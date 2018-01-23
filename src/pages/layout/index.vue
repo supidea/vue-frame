@@ -57,7 +57,10 @@ export default {
     background-image: url('/static/images/min-logo.png');
   }
 }
-
+.l-header{
+  background: #fff;
+  border-bottom: 1px solid @baseBorderColor;
+}
 .l-main {
   display: flex;
   flex-direction: column;
