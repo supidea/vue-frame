@@ -11,7 +11,7 @@
             <i class="side-menu__icon iconfont" v-if="item.meta && item.meta.icon" :class="['icon-'+item.meta.icon]"></i>
             <span v-if="item.meta && item.meta.title">{{item.meta.title}}</span>
           </template>
-          <el-menu-item :title="sub.path" :index="sub.path" v-for="sub in item.children" :key="sub.path" :route="sub">
+          <el-menu-item :title="sub.path" :index="sub.path" v-for="sub in item.children" :key="sub.path" :route="sub" v-if="!sub.hidden">
             <i class="side-menu__sub-icon"></i>
             <span v-if="sub.meta && sub.meta.title">{{sub.meta.title}}</span>
           </el-menu-item>
@@ -28,7 +28,14 @@ export default {
     ...mapState({
       routes: state => state.permission.addRoutes,
       sidebar: state => state.app.sidebar
-    })
+    }),
+    menuList() {
+      let addRoutes = this.$store.state.permission.addRoutes
+      let arr = addRoutes.filter(v => {
+        return !v.hidden
+      })
+      return arr
+    }
   }
 }
 </script>

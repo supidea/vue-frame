@@ -35,8 +35,7 @@ module.exports = {
     'vue': 'Vue',
     'vue-router': 'VueRouter',
     'vuex': 'Vuex',
-    'axios': 'axios',
-    'element-ui': 'ELEMENT'
+    'axios': 'axios'
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],
