@@ -10,9 +10,11 @@
       </el-header>
       <el-main class="l-main">
         <v-breadcrumb />
-        <keep-alive :include="cachePage">
-          <router-view class="l-content" />
-        </keep-alive>
+        <div class="l-content">
+          <keep-alive :include="cachePage">
+            <router-view />
+          </keep-alive>
+        </div>
       </el-main>
     </el-container>
   </el-container>

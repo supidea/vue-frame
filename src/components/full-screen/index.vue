@@ -14,6 +14,15 @@ export default {
       default: false
     }
   },
+  mounted() {
+    let isFullscreen =
+      document.webkitFullscreenElement || document.webkitIsFullScreen
+    isFullscreen = !!isFullscreen
+    document.addEventListener('webkitfullscreenchange', () => {
+      this.$emit('input', !this.value)
+    })
+    this.$emit('input', isFullscreen)
+  },
   methods: {
     handleChange() {
       let main = document.body
@@ -23,15 +32,6 @@ export default {
         main.webkitRequestFullScreen && main.webkitRequestFullScreen()
       }
     }
-  },
-  mounted() {
-    let isFullscreen =
-      document.webkitFullscreenElement || document.webkitIsFullScreen
-    isFullscreen = !!isFullscreen
-    document.addEventListener('webkitfullscreenchange', () => {
-      this.$emit('input', !this.value)
-    })
-    this.$emit('input', isFullscreen)
   }
 }
 </script>

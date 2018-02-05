@@ -1,7 +1,9 @@
 <template>
   <div class="main-header">
     <span class="side-collapse iconfont icon-zhankai" :class="{'is-collapse': sidebar.isCollapse}" @click="toggleSideBar"></span>
-    <div class="main-header__left"></div>
+    <div class="main-header__left">
+      <v-select-subject-panel />
+    </div>
     <div class="main-header__right">
       <v-full-screen class="header-bar__btn" v-model="isFullScreen" />
       <v-message-tip class="header-bar__btn" v-model="messageCount" />
@@ -29,10 +31,12 @@
 import { mapState } from 'vuex'
 import vFullScreen from '@/components/full-screen'
 import vMessageTip from '@/components/message-tip'
+import vSelectSubjectPanel from '@/components/select-subject-panel'
 export default {
   components: {
     vFullScreen,
-    vMessageTip
+    vMessageTip,
+    vSelectSubjectPanel
   },
   data() {
     return {
