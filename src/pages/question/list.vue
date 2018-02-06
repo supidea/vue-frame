@@ -1,5 +1,5 @@
 <template>
-  <v-table :data="tableData" :columns="columns" />
+  <v-table border :data="tableData" :columns="columns" />
 </template>
 
 <script>
@@ -11,15 +11,20 @@ export default {
   data() {
     return {
       columns: [
-        { type: 'index' },
-        { prop: 'date', label: '日期', width: 180 },
+        { type: 'selection', align: 'center' },
+        {
+          prop: 'date',
+          label: '日期',
+          width: 180,
+          'show-overflow-tooltip': true
+        },
         { type: 'html', prop: 'name', label: '名称', width: 180 },
         {
           prop: 'address',
           label: '地址',
+          fixed: 'right',
           render: (h, params) => (
             <span onClick={this.bss.bind(this, params)}>ffffffffffff</span>
-            // <span onClick={params => { this.bss(params) }}>ffffffffffff</span>
           )
         }
       ],
@@ -30,7 +35,7 @@ export default {
           address: '上海市普陀区金沙江路 1518 弄'
         },
         {
-          date: '2016-05-04',
+          date: '2016-05-04fffffffffffffffffffffffffffffffffffffffffffff',
           name: '王小虎',
           address: '上海市普陀区金沙江路 1517 弄'
         },

@@ -1,34 +1,16 @@
 <template>
-  <el-table v-bind="$attrs" v-on="$listeners" style="width: 100%;overflow:hidden" header-cell-class-name="hi-table__head-cell">
+  <el-table v-bind="$attrs" v-on="$listeners" style="width: 100%;" header-cell-class-name="hi-table__head-cell">
     <template v-for="(column, index) in columns">
-      <el-table-column :align="column.align" :type="column.type" :width="column.width" :key="index" v-if="column.type === 'selection' || column.type === 'index'">
-      </el-table-column>
-      <el-table-column :align="column.align" :type="column.type" :width="column.width" :key="index" v-else-if="column.type === 'expand'">
-        <template slot-scope="scope">
-          <table-extand :render="column.render" :data="scope" />
-        </template>
-      </el-table-column>
-      <el-table-column :align="column.align" :label="column.label" :width="column.width" :key="index" v-else-if="column.type === 'html'">
-        <template slot-scope="scope">
-          <div v-html="scope.row[column.prop]"></div>
-        </template>
-      </el-table-column>
-      <el-table-column :align="column.align" :label="column.label" :width="column.width" :key="index" v-else-if="column.render">
-        <template slot-scope="scope">
-          <table-extand :render="column.render" :data="scope" />
-        </template>
-      </el-table-column>
-      <el-table-column :align="column.align" :prop="column.prop" :label="column.label" :width="column.width" :key="index" v-else>
-      </el-table-column>
+      <table-cell :key="index" :column="column"/>
     </template>
   </el-table>
 </template>
 
 <script>
-import tableExtand from './extand'
+import tableCell from './cell'
 export default {
   components: {
-    tableExtand
+    tableCell
   },
   props: ['columns'],
   inheritAttrs: false
@@ -36,6 +18,9 @@ export default {
 </script>
 
 <style lang="less">
+.el-table__body-wrapper, .el-table__footer-wrapper, .el-table__header-wrapper{
+  overflow-x: hidden;
+}
 .hi-table {
   &__head-cell {
     background-color: #ecf5ff;
