@@ -8,6 +8,9 @@ const getUserInfo = Mock.mock({
     name: '@cname',
     avatar: Mock.Random.image('60x60'),
     role: 'admin',
+    periodId: 10001,
+    regionId: 153,
+    subjectId: 8,
     routes: [
       {
         path: '/paper',

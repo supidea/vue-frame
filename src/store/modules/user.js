@@ -5,7 +5,10 @@ const state = {
   id: '',
   name: '',
   avatar: '',
-  role: ''
+  role: '',
+  regionId: '',
+  periodId: '',
+  subjectId: ''
 }
 
 const mutations = {
@@ -20,26 +23,34 @@ const mutations = {
   },
   [types.SET_USER_ROLE](state, role) {
     state.role = role
+  },
+  [types.SET_USER_REGIONID](state, regionId) {
+    state.regionId = regionId
+  },
+  [types.SET_USER_PERIODID](state, periodId) {
+    state.periodId = periodId
+  },
+  [types.SET_USER_SUBJECTID](state, subjectId) {
+    state.subjectId = subjectId
   }
 }
 
 const actions = {
-  getUserInfo({ dispatch, commit }) {
-    return new Promise((resolve, reject) => {
-      user.getUserInfo().then(res => {
-        commit(types.SET_USRE_ID, res.data.id)
-        commit(types.SET_USER_NAME, res.data.name)
-        commit(types.SET_USER_AVATAR, res.data.avatar)
-        commit(types.SET_USER_ROLE, res.data.role)
-        dispatch('generateRoutes', res.data.routes).then(res => {
-          resolve(res)
-        }).catch(err => {
-          reject(err)
-        })
-      }).catch(err => {
-        reject(err)
-      })
-    })
+  async getUserInfo({ dispatch, commit }) {
+    try {
+      let res = await user.getUserInfo()
+      commit(types.SET_USRE_ID, res.data.id)
+      commit(types.SET_USER_NAME, res.data.name)
+      commit(types.SET_USER_AVATAR, res.data.avatar)
+      commit(types.SET_USER_ROLE, res.data.role)
+      commit(types.SET_USER_REGIONID, res.data.regionId)
+      commit(types.SET_USER_PERIODID, res.data.periodId)
+      commit(types.SET_USER_SUBJECTID, res.data.subjectId)
+      let result = await dispatch('generateRoutes', res.data.routes)
+      return result
+    } catch (err) {
+      return err
+    }
   }
 }
 
