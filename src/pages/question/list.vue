@@ -1,12 +1,17 @@
 <template>
-  <v-table border :data="tableData" :columns="columns" />
+  <div>
+    <v-topic-selector-panel style="margin-bottom: 20px;" label-width="60px"/>
+    <v-table border :data="tableData" :columns="columns" />
+  </div>
 </template>
 
 <script>
 import vTable from '../../components/table'
+import vTopicSelectorPanel from '../../components/topic-selector-panel'
 export default {
   components: {
-    vTable
+    vTable,
+    vTopicSelectorPanel
   },
   data() {
     return {

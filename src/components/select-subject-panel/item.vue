@@ -1,10 +1,10 @@
 <template>
-  <el-form-item :label="data.label">
-    <el-radio-group v-model="selectResult" v-if="data.key === 'periodId'">
-      <el-radio-button :label="item.code" v-for="item in data.list" :key="item.code">{{item.label}}</el-radio-button>
+  <el-form-item :label="label">
+    <el-radio-group v-model="selectResult" v-if="type === 'radioButton'">
+      <el-radio-button :label="item.code" v-for="item in options" :key="item.code">{{item.label}}</el-radio-button>
     </el-radio-group>
-    <el-select v-model="selectResult" placeholder="请选择" style="width: 100%" v-else>
-      <el-option :label="item.label" :value="item.code" v-for="item in data.list" :key="item.code">
+    <el-select v-model="selectResult" placeholder="请选择" style="width: 100%" v-if="type==='select'">
+      <el-option :label="item.label" :value="item.code" v-for="item in options" :key="item.code">
       </el-option>
     </el-select>
   </el-form-item>
@@ -13,13 +13,21 @@
 <script>
 export default {
   props: {
-    data: {
-      type: Object,
-      default: () => {}
+    label: {
+      type: String,
+      default: ''
+    },
+    options: {
+      type: Array,
+      default: () => []
     },
     value: {
       type: [Number, String],
       default: ''
+    },
+    type: {
+      type: String,
+      default: 'select'
     }
   },
   computed: {

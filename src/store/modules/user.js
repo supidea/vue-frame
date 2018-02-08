@@ -51,6 +51,11 @@ const actions = {
     } catch (err) {
       return err
     }
+  },
+  updateUserSgr({ commit }, { regionId = '', periodId = '', subjectId = '' }) {
+    commit(types.SET_USER_REGIONID, regionId)
+    commit(types.SET_USER_PERIODID, periodId)
+    commit(types.SET_USER_SUBJECTID, subjectId)
   }
 }
 
