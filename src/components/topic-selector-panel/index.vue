@@ -1,212 +1,57 @@
 <template>
-  <section class="topic-selector-panel">
-    <v-item labelWidth="50px" label="年份" :options="options" :value="selectResult" :handle-select="handleSelect"/>
+  <section class="topic-selector-panel" v-loading="loading" element-loading-text="拼命加载中" element-loading-spinner="el-icon-loading">
+    <v-item v-bind="$attrs" :label="item.label" :options="item.list" :value="value[item.key]" @handle-select="handleSelect($event, item.key)" v-for="item in list" :key="item.key" />
   </section>
 </template>
 
 <script>
 import vItem from './item'
+import { app } from '../../api'
 export default {
   components: { vItem },
   props: {
-    labelWidth: [String]
+    type: {
+      type: String,
+      required: true
+    },
+    value: {
+      type: Object,
+      default: () => {}
+    }
   },
+  inheritAttrs: false,
   data() {
     return {
       isExpand: false,
-      selectResult: '',
-      options: [
-        {
-          code: '111',
-          label: '山东'
-        },
-        {
-          code: '111',
-          label: '山东'
-        },
-        {
-          code: '111',
-          label: '山东'
-        },
-        {
-          code: '111',
-          label: '山东'
-        },
-        {
-          code: '111',
-          label: '山东'
-        },
-        {
-          code: '111',
-          label: '山东'
-        },
-        {
-          code: '111',
-          label: '山东'
-        },
-        {
-          code: '111',
-          label: '山东'
-        },
-        {
-          code: '111',
-          label: '山东'
-        },
-        {
-          code: '111',
-          label: '山东'
-        },
-        {
-          code: '111',
-          label: '山东'
-        },
-        {
-          code: '111',
-          label: '山东'
-        },
-        {
-          code: '111',
-          label: '山东'
-        },
-        {
-          code: '111',
-          label: '山东'
-        },
-        {
-          code: '111',
-          label: '山东'
-        },
-        {
-          code: '111',
-          label: '山东'
-        },
-        {
-          code: '111',
-          label: '山东'
-        },
-        {
-          code: '111',
-          label: '山东'
-        },
-        {
-          code: '111',
-          label: '山东'
-        },
-        {
-          code: '111',
-          label: '山东'
-        },
-        {
-          code: '111',
-          label: '山东'
-        },
-        {
-          code: '111',
-          label: '山东'
-        },
-        {
-          code: '111',
-          label: '山东'
-        },
-        {
-          code: '111',
-          label: '山东'
-        },
-        {
-          code: '111',
-          label: '山东'
-        },
-        {
-          code: '111',
-          label: '山东'
-        },
-        {
-          code: '111',
-          label: '山东'
-        },
-        {
-          code: '111',
-          label: '山东'
-        },
-        {
-          code: '111',
-          label: '山东'
-        },
-        {
-          code: '111',
-          label: '山东'
-        },
-        {
-          code: '111',
-          label: '山东'
-        },
-        {
-          code: '111',
-          label: '山东'
-        },
-        {
-          code: '111',
-          label: '山东'
-        },
-        {
-          code: '111',
-          label: '山东'
-        },
-        {
-          code: '111',
-          label: '山东'
-        },
-        {
-          code: '111',
-          label: '山东'
-        }
-      ]
+      list: [],
+      loading: false
     }
   },
-  mounted() {},
+  created() {
+    this.getOptionsData(this.type)
+  },
   methods: {
-    handleSelect(item) {
-      console.log(item)
+    async getOptionsData(type) {
+      this.loading = true
+      try {
+        let res = await app.getDictData(type)
+        this.list = res.data
+      } catch (err) {
+        this.$message.error(err)
+      }
+      this.loading = false
+    },
+    handleSelect(item, key) {
+      let obj = {}
+      obj[key] = item.code
+      let newVal = {...this.value, ...obj}
+      this.$emit('update:value', newVal)
+      this.$emit('change', newVal)
     }
   }
 }
 </script>
 
 <style lang="less">
-@import url('../../assets/styles/variables.less');
-.topic-selector-panel {
-  background-color: #fff;
-  padding: 15px 20px;
-  font-size: 12px;
-  &__item {
-    display: flex;
-    align-items: baseline;
-    margin: 0 0 10px 0;
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-  &__tags {
-    flex: 1;
-    margin: 0;
-    overflow: hidden;
-    & > span {
-      cursor: pointer;
-      display: inline-flex;
-      padding: 3px 8px;
-      border-radius: @baseBorderRadius;
-      margin-right: 10px;
-      &.is-active {
-        background-color: @blue;
-        color: #fff;
-      }
-    }
-  }
-  &__more {
-    width: 60px;
-    text-align: right;
-    cursor: pointer;
-    margin-left: 10px;
-  }
-}
+@import url(./style.less);
 </style>

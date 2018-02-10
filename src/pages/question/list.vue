@@ -1,7 +1,11 @@
 <template>
   <div>
-    <v-topic-selector-panel style="margin-bottom: 20px;" label-width="60px"/>
+    <v-topic-selector-panel class="l-mb" label-width="80px" type="PAPER" :value.sync="selectorValue" @change="change" />
     <v-table border :data="tableData" :columns="columns" />
+    <div class="l-mt l-tar">      
+      <el-pagination background layout="prev, pager, next" :total="1000">
+      </el-pagination>
+    </div>
   </div>
 </template>
 
@@ -15,6 +19,7 @@ export default {
   },
   data() {
     return {
+      selectorValue: {},
       columns: [
         { type: 'selection', align: 'center' },
         {
@@ -57,9 +62,18 @@ export default {
       ]
     }
   },
+  watch: {
+    selectorValue(val) {
+      console.log('xxxxxx')
+      console.log(val)
+    }
+  },
   methods: {
     bss(item) {
       console.log(item)
+    },
+    change(val) {
+      console.log(val)
     }
   }
 }
