@@ -2,10 +2,14 @@
   <div>
     <v-topic-selector-panel class="l-mb" label-width="80px" type="PAPER" :value.sync="selectorValue" @change="change" />
     <v-table border :data="tableData" :columns="columns" />
-    <div class="l-mt l-tar">      
-      <el-pagination background layout="prev, pager, next" :total="1000">
+    <div class="l-mt l-tar">
+      <el-pagination background layout="total, prev, pager, next" :total="1000" class="m-pagination">
       </el-pagination>
     </div>
+
+    <el-dialog class="m-dialog" title="收货地址" :visible.sync="dialogTableVisible">
+      斯蒂芬斯发第三方第三方第三方的
+    </el-dialog>
   </div>
 </template>
 
@@ -20,6 +24,7 @@ export default {
   data() {
     return {
       selectorValue: {},
+      dialogTableVisible: true,
       columns: [
         { type: 'selection', align: 'center' },
         {

@@ -57,7 +57,7 @@ export default {
     }
     .el-menu-item.is-active {
       background: @sideMenuItemActiveBgc !important;
-      .sidebar__sub-icon {
+      .side-menu__sub-icon {
         background-color: @blue;
       }
     }
