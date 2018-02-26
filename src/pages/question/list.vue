@@ -1,5 +1,6 @@
 <template>
   <div>
+    <v-search-bar class="l-mb" placeholder="请输入sdfsdfsf内容" v-model="value" size="small" style="width: 300px" />
     <v-topic-selector-panel class="l-mb" label-width="80px" type="PAPER" :value.sync="selectorValue" @change="change" />
     <v-table border :data="tableData" :columns="columns" />
     <div class="l-mt l-tar">
@@ -16,15 +17,19 @@
 <script>
 import vTable from '../../components/table'
 import vTopicSelectorPanel from '../../components/topic-selector-panel'
+import vSearchBar from '../../components/search-bar'
 export default {
   components: {
     vTable,
-    vTopicSelectorPanel
+    vTopicSelectorPanel,
+    vSearchBar
   },
   data() {
     return {
+      value: '',
       selectorValue: {},
-      dialogTableVisible: true,
+      dialogTableVisible: false,
+      radio: '1',
       columns: [
         { type: 'selection', align: 'center' },
         {
@@ -33,11 +38,12 @@ export default {
           width: 180,
           'show-overflow-tooltip': true
         },
-        { type: 'html', prop: 'name', label: '名称', width: 180 },
+        { type: 'html', prop: 'name', label: '名称' },
         {
           prop: 'address',
           label: '地址',
           fixed: 'right',
+          width: 100,
           render: (h, params) => (
             <span onClick={this.bss.bind(this, params)}>ffffffffffff</span>
           )
