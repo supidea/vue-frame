@@ -36,21 +36,7 @@ export default {
     }
   },
   mounted() {
-    this.$nextTick(() => {
-      let tagsEle = document.documentElement.querySelector(
-        '.topic-selector-panel__tags'
-      )
-      let tagEle = document.documentElement.querySelector(
-        '.topic-selector-panel__tag'
-      )
-      this.minHeight = tagEle.clientHeight
-      this.maxHeight = tagsEle.clientHeight
-      if (this.maxHeight > this.minHeight) {
-        this.height = this.minHeight
-        this.hasExpandBtn = true
-        this.isExpand = false
-      }
-    })
+    this.showMoreBtn()
   },
   methods: {
     handlerExpand() {
@@ -59,6 +45,19 @@ export default {
     },
     handleSelect(val) {
       this.$emit('handle-select', val)
+    },
+    showMoreBtn() {
+      this.$nextTick(() => {
+        let tagsEle = this.$refs['tags']
+        let tagEle = tagsEle.children[0]
+        this.minHeight = tagEle.clientHeight
+        this.maxHeight = tagsEle.clientHeight
+        if (this.maxHeight > this.minHeight) {
+          this.height = this.minHeight
+          this.hasExpandBtn = true
+          this.isExpand = false
+        }
+      })
     }
   }
 }
