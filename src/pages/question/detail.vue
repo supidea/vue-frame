@@ -1,5 +1,11 @@
 <template>
-  <div class="box-wrap">
+  <v-scroll-panel style="width: 1300px">
+    <div slot="left" style="width: 180px;">fsdfsfd</div>
+    <div style="width: 210mm;background-color:#fff;padding:20px">
+      <div v-for="n in 500" :key="n" class="bbbbb">bbbbbbbbbbbb</div>
+    </div>
+  </v-scroll-panel>
+  <!-- <div class="box-wrap">
     <div class="box-con" ref="con">
       <div class="ixx">1</div>
       <div class="ixx">2</div>
@@ -9,15 +15,17 @@
     <div class="box-side">
       <v-steps :data="list" :active="active" @handleChange="jump"></v-steps>
     </div>
-  </div>
+  </div> -->
 </template>
 
 <script>
+import vScrollPanel from '../../components/scroll-panel'
 import vSteps from '../../components/steps'
 import { throttle } from '../../utils'
 export default {
   components: {
-    vSteps
+    vSteps,
+    vScrollPanel
   },
   data() {
     return {
@@ -30,6 +38,7 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
+      console.log(this.$parent)
       let eles = document.documentElement.querySelectorAll('.ixx')
       this.scrollBox = document.documentElement.querySelector('.l-main')
       let ot = this.scrollBox.offsetTop
@@ -41,7 +50,10 @@ export default {
         'scroll',
         throttle(
           () => {
-            this.active = this.getIndex(this.stepsElesHeightArr, this.scrollBox.scrollTop)
+            this.active = this.getIndex(
+              this.stepsElesHeightArr,
+              this.scrollBox.scrollTop
+            )
           },
           100,
           100
@@ -51,7 +63,8 @@ export default {
   },
   methods: {
     getIndex(arr, num) {
-      let len = arr.length, index = 0
+      let len = arr.length,
+        index = 0
       if (len <= 0) return 0
       if (arr[len - 1] <= num) return len - 1
       for (var i = 0; i < len - 1; i++) {
@@ -83,8 +96,11 @@ export default {
 </script>
 
 <style lang="less">
+.bbbbb{
+  height: 100px;
+}
 .ixx {
-  height: 600px;
+  height: 20px;
 }
 .box-wrap {
   margin: 0 auto;
