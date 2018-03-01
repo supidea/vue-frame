@@ -1,17 +1,17 @@
 <template>
   <div class="side-menu">
-    <el-menu :router="true" :default-active="$route.path" :collapse="sidebar.isCollapse" background-color="#3587ff" text-color="#fff" active-text-color="#409eff">
-      <template v-for="item in routes" v-if="!item.hidden && item.children">
-        <el-menu-item :index="item.path" :route="item" :key="item.path" v-if="item.children.length === 1">
-          <i class="side-menu__icon iconfont" :class="['icon-'+item.meta.icon]"></i>
+    <el-menu :router="true" :default-active="defaultActive" :collapse="sidebar.isCollapse" background-color="#3587ff" text-color="#fff" active-text-color="#409eff">
+      <template v-for="item in routes" v-if="!item.meta.hidden && item.children && item.children.length > 0">
+        <el-menu-item :index="item.path" :route="item" :key="item.path" v-if="item.noDropdown">
+          <i class="side-menu__icon iconfont" :class="['icon-'+item.icon]"></i>
           <span slot="title">{{item.meta && item.meta.title}}</span>
         </el-menu-item>
         <el-submenu :index="item.path" :key="item.path" v-else>
           <template slot="title">
-            <i class="side-menu__icon iconfont" v-if="item.meta && item.meta.icon" :class="['icon-'+item.meta.icon]"></i>
+            <i class="side-menu__icon iconfont" v-if="item.icon" :class="['icon-'+item.icon]"></i>
             <span v-if="item.meta && item.meta.title">{{item.meta.title}}</span>
           </template>
-          <el-menu-item :title="sub.path" :index="sub.path" v-for="sub in item.children" :key="sub.path" :route="sub" v-if="!sub.hidden">
+          <el-menu-item :title="sub.path" :index="sub.path" v-for="sub in item.children" :key="sub.path" :route="sub" v-if="!sub.meta.hidden">
             <i class="side-menu__sub-icon"></i>
             <span v-if="sub.meta && sub.meta.title">{{sub.meta.title}}</span>
           </el-menu-item>
@@ -29,12 +29,17 @@ export default {
       routes: state => state.permission.addRoutes,
       sidebar: state => state.app.sidebar
     }),
-    menuList() {
-      let addRoutes = this.$store.state.permission.addRoutes
-      let arr = addRoutes.filter(v => {
-        return !v.hidden
-      })
-      return arr
+    defaultActive () {
+      let matched = this.$route.matched
+      if (matched instanceof Array && matched.length > 0) {
+        for (let i = matched.length - 1; i >= 0; i--) {
+          let _route = matched[i]
+          if (_route.meta && !_route.meta.hidden) {
+            return _route.path
+          }
+        }
+      }
+      return this.$route
     }
   }
 }
@@ -62,7 +67,7 @@ export default {
       }
     }
   }
-  &__icon {
+  & &__icon {
     color: #fff;
     width: 24px;
     text-align: center;

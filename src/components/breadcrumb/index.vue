@@ -1,7 +1,10 @@
 <template>
   <el-breadcrumb separator-class="el-icon-arrow-right" class="m-breadcrumb">
     <el-breadcrumb-item>首页</el-breadcrumb-item>
-    <el-breadcrumb-item :key="item.name" v-for="item in list" v-if="!item.redirect">{{item.meta.title}}</el-breadcrumb-item>
+    <template v-for="(item, index) in list">
+      <el-breadcrumb-item :key="item.name" v-if="!item.redirect||index===list.length-1">{{item.meta.title}}</el-breadcrumb-item>
+      <el-breadcrumb-item :key="item.name" :to="item.path" v-else>{{item.meta.title}}</el-breadcrumb-item>
+    </template>
   </el-breadcrumb>
 </template>
 
@@ -9,6 +12,7 @@
 export default {
   computed: {
     list() {
+      console.log(this.$route.matched)
       return this.$route.matched
     }
   }

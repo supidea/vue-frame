@@ -16,26 +16,28 @@ const getUserInfo = Mock.mock({
         path: '/paper',
         name: 'Paper',
         componentPath: 'layout/index',
+        noDropdown: true,
+        icon: 'shijuan',
+        redirect: '/paper/list',
         meta: {
-          title: '试卷库',
-          icon: 'shijuan'
+          title: '试卷库'
         },
         children: [
           {
-            hidden: true,
-            path: '',
+            path: '/paper/list',
             name: 'Paper_List',
             componentPath: 'paper/index',
             meta: {
+              hidden: true,
               title: '试卷库'
             }
           },
           {
-            hidden: true,
             path: ':id',
             name: 'Paper_Detail',
             componentPath: 'paper/detail',
             meta: {
+              hidden: true,
               title: '试卷详情'
             }
           }
@@ -45,16 +47,17 @@ const getUserInfo = Mock.mock({
         path: '/question',
         name: 'Question',
         componentPath: 'layout/index',
+        icon: 'timu',
+        redirect: '/question/list',
         meta: {
-          icon: 'timu',
           title: '题库'
         },
         children: [
           {
-            path: 'list',
+            path: '/question/list',
             name: 'Question_List',
             meta: {
-              title: '题库'
+              title: '题库列表'
             },
             componentPath: 'question/list'
           },
@@ -62,6 +65,7 @@ const getUserInfo = Mock.mock({
             path: ':id',
             name: 'Question_Detail',
             meta: {
+              hidden: true,
               title: '题库详情'
             },
             componentPath: 'question/detail'

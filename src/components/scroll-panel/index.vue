@@ -42,21 +42,21 @@ export default {
   margin-left: auto;
   margin-right: auto;
   justify-content: space-between;
-  // &__con{
-  //   overflow-y: auto;
-  //   &::-webkit-scrollbar{
-  //     width: 10px;
-  //     background-color: #fff;
-  //   }
-  //   &::-webkit-scrollbar-thumb{
-  //     border-radius: 10px;
-  //     background-color: hsla(220,4%,58%,.3);
-  //     display: none;
-  //   }
-  //   &:hover::-webkit-scrollbar-thumb{
-  //     display: block;
-  //   }
-  // }
+  &__con{
+    overflow-y: auto;
+    &::-webkit-scrollbar{
+      width: 10px;
+      background-color: #fff;
+    }
+    &::-webkit-scrollbar-thumb{
+      border-radius: 10px;
+      background-color: hsla(220,4%,58%,.3);
+      display: none;
+    }
+    &:hover::-webkit-scrollbar-thumb{
+      display: block;
+    }
+  }
   &__left{
     background-color: #fff;
     padding: 20px;
