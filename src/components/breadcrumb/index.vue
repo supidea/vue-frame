@@ -12,7 +12,6 @@
 export default {
   computed: {
     list() {
-      console.log(this.$route.matched)
       return this.$route.matched
     }
   }

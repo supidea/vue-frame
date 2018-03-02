@@ -7,7 +7,7 @@
       <el-pagination background layout="total, prev, pager, next" :total="1000" class="m-pagination">
       </el-pagination>
     </div>
-
+    <v-chapter-tree style="width: 400px"/>
     <el-dialog class="m-dialog" title="收货地址" :visible.sync="dialogTableVisible">
       斯蒂芬斯发第三方第三方第三方的
     </el-dialog>
@@ -18,11 +18,13 @@
 import vTable from '../../components/table'
 import vTopicSelectorPanel from '../../components/topic-selector-panel'
 import vSearchBar from '../../components/search-bar'
+import vChapterTree from '../../components/chapter-tree'
 export default {
   components: {
     vTable,
     vTopicSelectorPanel,
-    vSearchBar
+    vSearchBar,
+    vChapterTree
   },
   data() {
     return {
