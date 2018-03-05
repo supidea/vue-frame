@@ -1,30 +1,20 @@
 <template>
-  <el-tree class="chapter-tree" :data="list" node-key="id" default-expand-all :expand-on-click-node="false">
-    <v-node slot-scope="{node, data}" :node="node" :data="data" @handler-remove="remove(node, data)" @handler-update="update" />
-    <!-- <div class="chapter-tree-node" slot-scope="{node, data}">
-      <div class="chapter-tree-node__title">
-        <span v-if="!data.canEdit" class="chapter-tree-node__txt" :title="data.label">{{data.label}}</span>
-        <input class="chapter-tree-node__ipt" type="text" v-else @blur="editEnd(data)" v-model="data.label">
-      </div>
-      <div class="chapter-tree-node__btn">
-        <i class="el-icon-circle-plus-outline" v-if="!node.isLeaf" @click="add(data)"></i>
-        <i class="el-icon-edit" @click="editStart(data)"></i>
-        <i class="el-icon-delete"></i>
+  <div class="m-tree">
+    <v-item v-for="(item, index) in list" :data="item" :key="index" :idx="index"></v-item>
+    <!-- <div class="m-tree-node" v-for="(item, index) in list" :key="index">
+      <div class="m-tree-node__content">{{item.label}}</div>
+      <div class="m-tree-node" v-for="(sub, idx) in item.children" :key="idx">
+        <div class="m-tree-node__content">{{sub.label}}</div>
       </div>
     </div> -->
-    <!-- <v-node :data="data" slot-scope="{node, data}">
-      <i class="el-icon-circle-plus-outline" @click="edit(node)" v-if="!node.isLeaf"></i>
-      <i class="el-icon-edit"></i>
-      <i class="el-icon-delete"></i>
-    </v-node> -->
-  </el-tree>
+  </div>
 </template>
 
 <script>
-import vNode from './node'
+import vItem from './item'
 export default {
   components: {
-    vNode
+    vItem
   },
   data() {
     return {
@@ -40,6 +30,51 @@ export default {
             },
             {
               id: 22,
+              label: '第一一章啊'
+            },
+            {
+              id: 213,
+              label:
+                '第一一章啊啊一章啊第一一章啊啊一章啊第一一章啊啊一章啊第一一章啊啊一章啊'
+            },
+            {
+              id: 2211,
+              label: '第一一章啊'
+            },
+            {
+              id: 11121,
+              label:
+                '第一一章啊啊一章啊第一一章啊啊一章啊第一一章啊啊一章啊第一一章啊啊一章啊'
+            },
+            {
+              id: 1122,
+              label: '第一一章啊'
+            },
+            {
+              id: 11213,
+              label:
+                '第一一章啊啊一章啊第一一章啊啊一章啊第一一章啊啊一章啊第一一章啊啊一章啊'
+            },
+            {
+              id: 112211,
+              label: '第一一章啊'
+            },
+            {
+              id: 112221,
+              label:
+                '第一一章啊啊一章啊第一一章啊啊一章啊第一一章啊啊一章啊第一一章啊啊一章啊'
+            },
+            {
+              id: 321222,
+              label: '第一一章啊'
+            },
+            {
+              id: 12314213,
+              label:
+                '第一一章啊啊一章啊第一一章啊啊一章啊第一一章啊啊一章啊第一一章啊啊一章啊'
+            },
+            {
+              id: 52132211,
               label: '第一一章啊'
             }
           ]
@@ -60,68 +95,14 @@ export default {
         }
       ]
     }
-  },
-  methods: {
-    editStart(ctx) {
-      this.$set(ctx, 'canEdit', true)
-    },
-    editEnd(ctx) {
-      this.$set(ctx, 'canEdit', false)
-    },
-    add(data) {
-      const newChild = { id: '', label: '', canEdit: true, children: [] }
-      if (!data.children) {
-        this.$set(data, 'children', [])
-      }
-      data.children.push(newChild)
-    },
-    remove(node, data) {
-      const parent = node.parent
-      const children = parent.data.children || parent.data
-      const index = children.findIndex(d => d.id === data.id)
-      children.splice(index, 1)
-    },
-    update() {}
   }
 }
 </script>
 
 <style lang="less">
-// .chapter-tree-node{
-//   display: flex;
-//   flex: 1;
-//   justify-content: space-between;
-//   overflow: hidden;
-//   &__title{
-//     display: flex;
-//     flex: 1;
-//     overflow: hidden;
-//   }
-//   &__txt{
-//     overflow: hidden;
-//     text-overflow: ellipsis;
-//   }
-//   &__btn{
-//     margin-left: 20px;
-//   }
-// }
-// .chapter-tree {
-//   &-node {
-//     display: flex;
-//     justify-content: space-between;
-//     align-items: center;
-//     flex: 1;
-//     padding: 3px 0;
-//     &__title{
-//       flex: 1;
-//       display: flex;
-//     }
-//     &__txt{
-//       display: block;
-//       text-overflow: ellipsis;
-//       overflow: hidden;
-//       white-space: nowrap;
-//     }
-//   }
-// }
+.chapter-tree {
+  &-node {
+    padding-left: 18px;
+  }
+}
 </style>
