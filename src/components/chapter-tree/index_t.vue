@@ -9,7 +9,7 @@
           <div class="m-tree-node m-tree-node_btn">
             <i class="el-icon-circle-plus-outline"></i>
             <i class="el-icon-edit"></i>
-            <i class="el-icon-delete"></i>
+            <i class="el-icon-delete" @click="remove(index, list)"></i>
           </div>
         </div>
       </div>
@@ -22,7 +22,7 @@
               <div class="m-tree-node m-tree-node_txt">{{sub.label}}</div>
               <div class="m-tree-node m-tree-node_btn">
                 <i class="el-icon-edit"></i>
-                <i class="el-icon-delete"></i>
+                <i class="el-icon-delete" @click="remove(idx, item.children)"></i>
               </div>
             </div>
           </div>
@@ -67,6 +67,11 @@ export default {
           ]
         }
       ]
+    }
+  },
+  methods: {
+    remove(index, list) {
+      list.splice(index, 1)
     }
   }
 }
