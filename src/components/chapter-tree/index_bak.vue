@@ -1,6 +1,6 @@
 <template>
   <el-tree class="chapter-tree" :data="list" node-key="id" default-expand-all :expand-on-click-node="false">
-    <v-node slot-scope="{node, data}" draggable="true" :node="node" :data="data"/>
+    <v-node slot-scope="{node, data}" :node="node" :data="data"/>
     <!-- <div class="chapter-tree-node" slot-scope="{node, data}">
       <div class="chapter-tree-node__title">
         <span v-if="!data.canEdit" class="chapter-tree-node__txt" :title="data.label">{{data.label}}</span>

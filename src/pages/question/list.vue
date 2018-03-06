@@ -18,7 +18,7 @@
 import vTable from '../../components/table'
 import vTopicSelectorPanel from '../../components/topic-selector-panel'
 import vSearchBar from '../../components/search-bar'
-import vChapterTree from '../../components/chapter-tree'
+import vChapterTree from '../../components/chapter-tree/index_t'
 export default {
   components: {
     vTable,

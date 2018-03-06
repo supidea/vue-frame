@@ -1,5 +1,5 @@
 <template>
-  <div class="chapter-tree-node">
+  <div class="chapter-tree-node" @mousedown="test($event)">
     <div class="chapter-tree-node__title">
       <input type="text" class="chapter-tree-node__ipt" :value="data.label" v-if="data.canEdit" @blur="handlerBlur($event.target.value, data)" ref="ipt" v-focus/>
       <span class="chapter-tree-node__txt" :title="data.label" v-else>{{title}}</span>
@@ -74,8 +74,9 @@ export default {
       data.label = val
       this.$set(data, 'canEdit', false)
     },
-    drag(ele) {
-      console.log(ele)
+    test(ele) {
+      const currentEle = ele.currentTarget
+      console.log(currentEle.parentNode.parentNode)
     }
   }
 }
@@ -98,4 +99,5 @@ export default {
     margin-left: 20px;
   }
 }
+
 </style>
