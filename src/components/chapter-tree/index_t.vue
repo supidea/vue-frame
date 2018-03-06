@@ -6,7 +6,11 @@
         <div class="m-tree-node__title">
           <span class="m-tree-node m-tree-node_idx">{{index}}</span>
           <div class="m-tree-node m-tree-node_txt">{{item.label}}</div>
-          <div class="m-tree-node m-tree-node_btn"></div>
+          <div class="m-tree-node m-tree-node_btn">
+            <i class="el-icon-circle-plus-outline"></i>
+            <i class="el-icon-edit"></i>
+            <i class="el-icon-delete"></i>
+          </div>
         </div>
       </div>
       <div class="m-tree-node__children" v-if="item.children && item.children.length > 0">
@@ -16,7 +20,10 @@
             <div class="m-tree-node__title">
               <span class="m-tree-node m-tree-node_idx">{{idx}}</span>
               <div class="m-tree-node m-tree-node_txt">{{sub.label}}</div>
-              <div class="m-tree-node m-tree-node_btn"></div>
+              <div class="m-tree-node m-tree-node_btn">
+                <i class="el-icon-edit"></i>
+                <i class="el-icon-delete"></i>
+              </div>
             </div>
           </div>
         </div>
@@ -66,12 +73,12 @@ export default {
 </script>
 
 <style lang="less">
-.m-tree{
-  &-node{
-    &__content{
+.m-tree {
+  &-node {
+    &__content {
       display: flex;
     }
-    &__title{
+    &__title {
       display: flex;
     }
   }
