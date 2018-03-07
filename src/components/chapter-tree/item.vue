@@ -6,19 +6,20 @@
         <div class="m-tree-node__title">
           <span class="m-tree-node__index" v-if="isLeaf">{{soltNum + '.'}}</span>
           <span class="m-tree-node__index" v-else>{{soltNum + '、'}}</span>
-          <input type="text" class="m-tree-node__ipt" v-if="canEdit" @blur="blur" v-focus v-model="data.label">
-          <span class="m-tree-node__txt" v-else>{{data.label}}</span>
+          <input type="text" class="m-tree-node__ipt" v-if="data.canEdit" @blur="blur" v-focus v-model="data.name">
+          <span class="m-tree-node__txt" v-else>{{data.name}}</span>
         </div>
         <span class="m-tree-node__btn">
-          <i class="el-icon-circle-plus-outline" v-if="!isLeaf"></i>
-          <i class="el-icon-edit" @click="canEdit = true"></i>
-          <i class="el-icon-delete" @click="remove"></i>
+          <slot></slot>
+          <!-- <i class="el-icon-circle-plus-outline" v-if="!isLeaf" @click="add"></i>
+          <i class="el-icon-edit" @click="edit"></i>
+          <i class="el-icon-delete" @click="remove"></i> -->
         </span>
       </div>
     </div>
     <el-collapse-transition>
       <div class="m-tree-node__children" v-if="!isLeaf" v-show="expand">
-        <tree-node v-for="(item, index) in data.children" :key="index" :data="item" :idx="index"></tree-node>
+        <tree-node v-for="(item, index) in data.children" :node="data.children" :key="index" :data="item" :idx="index"></tree-node>
       </div>
     </el-collapse-transition>
   </div>
@@ -26,12 +27,17 @@
 
 <script>
 import { numberToChinese } from '../../utils'
+import Bus from './bus'
 export default {
   name: 'treeNode',
   props: {
     data: {
       type: Object,
       default: () => {}
+    },
+    node: {
+      type: Array,
+      default: () => []
     },
     idx: {
       type: Number,
@@ -40,8 +46,7 @@ export default {
   },
   data() {
     return {
-      expand: true,
-      canEdit: false
+      expand: true
     }
   },
   computed: {
@@ -66,11 +71,22 @@ export default {
     }
   },
   methods: {
+    edit() {
+      this.$set(this.data, 'canEdit', true)
+    },
     blur() {
-      this.canEdit = false
+      this.data.canEdit = false
+      Bus.$emit('handler-update', this.data)
+    },
+    add() {
+      const newChild = { id: '', name: '', canEdit: true }
+      if (!this.data.children) {
+        this.$set(this.data, 'children', [])
+      }
+      this.data.children.push(newChild)
     },
     remove() {
-      console.log(this.data)
+      this.node.splice(this.idx, 1)
     }
   }
 }
@@ -101,7 +117,7 @@ export default {
     height: 24px;
     line-height: 24px;
   }
-  &__title{
+  &__title {
     display: flex;
     flex: 1;
     align-items: center;
@@ -115,20 +131,20 @@ export default {
   &__children {
     overflow: hidden;
   }
-  &__index{
+  &__index {
     margin-right: 6px;
   }
-  &__txt{
+  &__txt {
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  &__ipt{
+  &__ipt {
     padding: 0 5px;
     height: 24px;
     border: 1px solid #ddd;
     flex: 1;
     box-sizing: border-box;
-    &:focus{
+    &:focus {
       outline: none;
     }
   }

@@ -7,7 +7,7 @@
       <el-pagination background layout="total, prev, pager, next" :total="1000" class="m-pagination">
       </el-pagination>
     </div>
-    <v-chapter-tree style="width: 400px"/>
+    <v-chapter-tree style="width: 400px" :data="list"/>
     <el-dialog class="m-dialog" title="收货地址" :visible.sync="dialogTableVisible">
       斯蒂芬斯发第三方第三方第三方的
     </el-dialog>
@@ -71,6 +71,36 @@ export default {
           date: '2016-05-03',
           name: '王小虎',
           address: '上海市普陀区金沙江路 1516 弄'
+        }
+      ],
+      list: [
+        {
+          id: 111,
+          name: '3测试111',
+          children: [
+            {
+              id: 2232,
+              name: '测试232323'
+            },
+            {
+              id: 32232,
+              name: '测试232323'
+            }
+          ]
+        },
+        {
+          id: 4111,
+          name: '4测试111',
+          children: [
+            {
+              id: 52232,
+              name: '测试232323'
+            },
+            {
+              id: 62232,
+              name: '测试232323'
+            }
+          ]
         }
       ]
     }
