@@ -7,7 +7,7 @@
       <el-pagination background layout="total, prev, pager, next" :total="1000" class="m-pagination">
       </el-pagination>
     </div>
-    <v-chapter-tree style="width: 400px" :data="list"/>
+    <v-chapter-tree style="width: 400px" :data="list" @handler-select="handlerSelect"/>
     <el-dialog class="m-dialog" title="收货地址" :visible.sync="dialogTableVisible">
       斯蒂芬斯发第三方第三方第三方的
     </el-dialog>
@@ -116,6 +116,9 @@ export default {
       console.log(item)
     },
     change(val) {
+      console.log(val)
+    },
+    handlerSelect(val) {
       console.log(val)
     }
   }
