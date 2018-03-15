@@ -7,11 +7,7 @@
     <div class="main-header__right">
       <v-full-screen class="header-bar__btn" v-model="isFullScreen" />
       <v-message-tip class="header-bar__btn" v-model="messageCount" />
-      <el-tooltip class="header-bar__btn" effect="dark" content="草稿箱" placement="bottom">
-        <router-link :to="{name: 'Paper'}" tag="span">
-          <i class="iconfont icon-caogaoxiang"></i>
-        </router-link>
-      </el-tooltip>
+      <v-draft-tip class="header-bar__btn" v-model="draftCount"/>
       <el-dropdown class="user-avatar">
         <span class="el-dropdown-link">
           李太白
@@ -31,17 +27,20 @@
 import { mapState } from 'vuex'
 import vFullScreen from '@/components/full-screen'
 import vMessageTip from '@/components/message-tip'
+import vDraftTip from '@/components/draft-tip'
 import vSelectSubjectPanel from '@/components/select-subject-panel'
 export default {
   components: {
     vFullScreen,
     vMessageTip,
+    vDraftTip,
     vSelectSubjectPanel
   },
   data() {
     return {
       isFullScreen: false,
-      messageCount: 3
+      messageCount: 3,
+      draftCount: 10
     }
   },
   computed: {
@@ -91,21 +90,16 @@ export default {
     &__btn {
       margin-left: 20px;
       cursor: pointer;
-      &:last-of-type {
-        margin-right: 40px;
-      }
       i {
         color: #666;
         font-size: 18px;
-      }
-      &:last-child {
-        margin-right: 40px;
       }
     }
   }
   .user-avatar {
     display: flex;
     align-items: center;
+    margin-left: 40px;
     &__img {
       width: 32px;
       height: 32px;

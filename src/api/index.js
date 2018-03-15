@@ -1,2 +1,5 @@
 export { default as user } from './user'
 export { default as app } from './app'
+export { default as paper } from './paper'
+export { default as lecture } from './lecture'
+export { default as textbook } from './textbook'

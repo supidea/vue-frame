@@ -13,11 +13,33 @@ const getUserInfo = Mock.mock({
     subjectId: 8,
     routes: [
       {
+        path: '/textbook',
+        name: 'Textbook',
+        componentPath: 'layout/index',
+        noDropdown: true,
+        icon: 'icon-jiaocai',
+        redirect: '/textbook/list',
+        meta: {
+          title: '精品教材'
+        },
+        children: [
+          {
+            path: '/textbook/list',
+            name: 'Textbook_List',
+            componentPath: 'textbook/list/index',
+            meta: {
+              hidden: true,
+              title: '教材列表'
+            }
+          }
+        ]
+      },
+      {
         path: '/paper',
         name: 'Paper',
         componentPath: 'layout/index',
         noDropdown: true,
-        icon: 'shijuan',
+        icon: 'icon-shijuan',
         redirect: '/paper/list',
         meta: {
           title: '试卷库'
@@ -26,16 +48,16 @@ const getUserInfo = Mock.mock({
           {
             path: '/paper/list',
             name: 'Paper_List',
-            componentPath: 'paper/index',
+            componentPath: 'paper/list/index',
             meta: {
               hidden: true,
-              title: '试卷库'
+              title: '试卷列表'
             }
           },
           {
             path: ':id',
             name: 'Paper_Detail',
-            componentPath: 'paper/detail',
+            componentPath: 'paper/detail/index',
             meta: {
               hidden: true,
               title: '试卷详情'
@@ -47,8 +69,9 @@ const getUserInfo = Mock.mock({
         path: '/question',
         name: 'Question',
         componentPath: 'layout/index',
-        icon: 'timu',
+        icon: 'icon-timu',
         redirect: '/question/list',
+        noDropdown: true,
         meta: {
           title: '题库'
         },
@@ -57,6 +80,7 @@ const getUserInfo = Mock.mock({
             path: '/question/list',
             name: 'Question_List',
             meta: {
+              hidden: true,
               title: '题库列表'
             },
             componentPath: 'question/list'
@@ -69,6 +93,47 @@ const getUserInfo = Mock.mock({
               title: '题库详情'
             },
             componentPath: 'question/detail'
+          }
+        ]
+      },
+      {
+        path: '/lecture',
+        name: 'Lecture',
+        componentPath: 'layout/index',
+        noDropdown: true,
+        icon: 'icon-jiangyi',
+        redirect: '/lecture/list',
+        meta: {
+          title: '讲义库'
+        },
+        children: [
+          {
+            path: '/lecture/list',
+            name: 'Lecture_List',
+            componentPath: 'lecture/list/index',
+            meta: {
+              hidden: true,
+              title: '讲义列表'
+            }
+          }
+        ]
+      },
+      {
+        path: '/my',
+        name: 'My',
+        componentPath: 'layout/index',
+        icon: 'icon-geren',
+        meta: {
+          title: '个人中心'
+        },
+        children: [
+          {
+            path: '/my/lecture',
+            name: 'My_lecture',
+            componentPath: 'my/lecture/index',
+            meta: {
+              title: '我的讲义'
+            }
           }
         ]
       }

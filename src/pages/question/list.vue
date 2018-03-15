@@ -7,7 +7,6 @@
       <el-pagination background layout="total, prev, pager, next" :total="1000" class="m-pagination">
       </el-pagination>
     </div>
-    <v-chapter-tree style="width: 400px" :data="list" @handler-select="handlerSelect"/>
     <el-dialog class="m-dialog" title="收货地址" :visible.sync="dialogTableVisible">
       斯蒂芬斯发第三方第三方第三方的
     </el-dialog>
@@ -16,15 +15,13 @@
 
 <script>
 import vTable from '../../components/table'
-import vTopicSelectorPanel from '../../components/topic-selector-panel'
+import vTopicSelectorPanel from '../../components/topic-filter-panel'
 import vSearchBar from '../../components/search-bar'
-import vChapterTree from '../../components/chapter-tree/index_t'
 export default {
   components: {
     vTable,
     vTopicSelectorPanel,
-    vSearchBar,
-    vChapterTree
+    vSearchBar
   },
   data() {
     return {
@@ -80,11 +77,11 @@ export default {
           children: [
             {
               id: 2232,
-              name: '测试232323'
+              name: '22测试232323'
             },
             {
               id: 32232,
-              name: '测试232323'
+              name: '33测试232323'
             }
           ]
         },
@@ -94,11 +91,11 @@ export default {
           children: [
             {
               id: 52232,
-              name: '测试232323'
+              name: '444测试232323'
             },
             {
               id: 62232,
-              name: '测试232323'
+              name: '555测试232323'
             }
           ]
         }

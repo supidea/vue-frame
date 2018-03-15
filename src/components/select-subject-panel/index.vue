@@ -5,7 +5,7 @@
       <el-form label-width="70px" size="mini">
         <v-item v-model="selectResult.regionId" v-if="regionOptions.list" :label="regionOptions.label" :options="regionOptions.list" type="select" />
         <v-item v-model="selectResult.subjectId" v-if="subjectOptions.list" :label="subjectOptions.label" :options="subjectOptions.list" type="select" />
-        <v-item v-model="selectResult.periodId" v-if="periodOptions.list" :label="periodOptions.label" :options="periodOptions.list" type="radioButton" />
+        <v-item v-model="selectResult.periodId" v-if="periodOptions.list" :label="periodOptions.label" :options="periodOptions.list" type="select" />
         <el-form-item style="text-align: center" label-width="0">
           <el-button type="primary" :loading="loading" @click="update">{{loading?'正在提交...':'确定'}}</el-button>
         </el-form-item>

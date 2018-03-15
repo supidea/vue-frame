@@ -1,10 +1,10 @@
 <template>
-  <dl class="topic-selector-panel__item">
-    <dt class="topic-selector-panel__label" :style="{width: labelWidth}">{{label}}：</dt>
-    <dd class="topic-selector-panel__tags" ref="tags" :style="{height: height+'px'}">
-      <span class="topic-selector-panel__tag" :class="{'is-active': item.code === value}" @click="handleSelect(item)" v-for="item in options" :key="item.code">{{item.label}}</span>
+  <dl class="topic-filter-panel__item">
+    <dt class="topic-filter-panel__label" :style="{width: labelWidth}">{{label}}：</dt>
+    <dd class="topic-filter-panel__tags" ref="tags" :style="{height: height+'px'}">
+      <span class="topic-filter-panel__tag" :class="{'is-active': item.code === value}" @click="handleSelect(item)" v-for="item in options" :key="item.code">{{item.label}}</span>
     </dd>
-    <dd class="topic-selector-panel__more">
+    <dd class="topic-filter-panel__more">
       <span v-if="hasExpandBtn" @click="handlerExpand">{{isExpand?'收起':'更多'}}
         <i :class="[isExpand?'el-icon-arrow-up':'el-icon-arrow-down']"></i>
       </span>

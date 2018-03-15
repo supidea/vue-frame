@@ -20,11 +20,11 @@
 
 <script>
 import vScrollPanel from '../../components/scroll-panel'
-import vSteps from '../../components/steps'
+// import vSteps from '../../components/steps'
 import { throttle } from '../../utils'
 export default {
   components: {
-    vSteps,
+    // vSteps,
     vScrollPanel
   },
   data() {

@@ -1,5 +1,5 @@
 <template>
-  <section class="topic-selector-panel" v-loading="loading" element-loading-text="拼命加载中" element-loading-spinner="el-icon-loading">
+  <section class="topic-filter-panel" v-loading="loading" element-loading-text="拼命加载中" element-loading-spinner="el-icon-loading">
     <v-item v-bind="$attrs" :label="item.label" :options="item.list" :value="value[item.key]" @handle-select="handleSelect($event, item.key)" v-for="item in list" :key="item.key" />
   </section>
 </template>
