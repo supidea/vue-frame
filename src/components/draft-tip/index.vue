@@ -19,7 +19,7 @@ export default {
   methods: {
     handleClick() {
       this.$router.push({
-        name: 'Paper'
+        name: 'My_draft'
       })
     }
   }

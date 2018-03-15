@@ -134,6 +134,15 @@ const getUserInfo = Mock.mock({
             meta: {
               title: '我的讲义'
             }
+          },
+          {
+            path: '/my/draft',
+            name: 'My_draft',
+            componentPath: 'my/draft/index',
+            meta: {
+              hidden: true,
+              title: '草稿箱'
+            }
           }
         ]
       }
