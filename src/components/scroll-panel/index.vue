@@ -21,7 +21,6 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
-      console.log(this.$slots.default)
       let scrollPanel = document.documentElement.querySelector('.l-main')
       scrollPanel.addEventListener('scroll', throttle(() => {
         console.log(scrollPanel.scrollTop)

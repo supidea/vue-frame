@@ -1,8 +1,8 @@
 <template>
   <div>
-    <v-search-bar class="l-mb" placeholder="请输入试卷名称" :value="searchKey" :loading="loading" @search="searchPaperList" size="small" style="width: 300px"/>
-    <v-topic-filter-panel class="l-mb" label-width="80px" type="PAPER" :value.sync="selectorResult" @change="filterPaperList"/>
-    <v-table border :data="tableData" v-loading="loading" :columns="columns" header-row-class-name="m-table-hd" class="m-table"/>
+    <v-search-bar class="l-mb" placeholder="请输入试卷名称" :value="searchKey" :loading="loading" @search="searchPaperList" size="small" style="width: 300px" />
+    <v-topic-filter-panel class="l-mb" label-width="80px" type="PAPER" :value.sync="selectorResult" @change="filterPaperList" />
+    <v-table border :data="tableData" v-loading="loading" :columns="columns" header-row-class-name="m-table-hd" class="m-table" />
     <div class="l-mt l-tar" v-if="pageTotal > 0">
       <el-pagination background layout="total, prev, pager, next" @current-change="changePage" :current-page="currentPage" :page-size="pageSize" :total="pageTotal" class="m-pagination">
       </el-pagination>
@@ -53,11 +53,20 @@ export default {
         },
         {
           label: '操作',
-          width: 100,
+          width: 80,
           align: 'center',
-          render: (h, params) => (
-            <span>查看</span>
-          )
+          render: (h, params) => {
+            return (
+              <div class="m-table-btn--opera">
+                <router-link
+                  tag="i"
+                  class="el-icon-view"
+                  title="查看"
+                  to={{ name: 'Paper_Detail', params: { id: params.row.id } }}
+                />
+              </div>
+            )
+          }
         }
       ],
       tableData: [],

@@ -66,6 +66,15 @@ export default {
 .l-main {
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    width: 10px;
+    background-color: #fff;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: hsla(220, 4%, 58%, 0.5);
+  }
 }
 .l-content {
   flex: 1;

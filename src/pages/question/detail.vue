@@ -1,11 +1,5 @@
 <template>
-  <v-scroll-panel style="width: 1300px">
-    <div slot="left" style="width: 180px;">fsdfsfd</div>
-    <div style="width: 210mm;background-color:#fff;padding:20px">
-      <div v-for="n in 500" :key="n" class="bbbbb">bbbbbbbbbbbb</div>
-    </div>
-  </v-scroll-panel>
-  <!-- <div class="box-wrap">
+  <div class="box-wrap">
     <div class="box-con" ref="con">
       <div class="ixx">1</div>
       <div class="ixx">2</div>
@@ -13,19 +7,19 @@
       <div class="ixx">4</div>
     </div>
     <div class="box-side">
-      <v-steps :data="list" :active="active" @handleChange="jump"></v-steps>
+      <v-steps :data="list" :active="active" @jump="jump"></v-steps>
     </div>
-  </div> -->
+  </div>
 </template>
 
 <script>
-import vScrollPanel from '../../components/scroll-panel'
-// import vSteps from '../../components/steps'
+// import vScrollPanel from '../../components/scroll-panel'
+import vSteps from '../../components/scroll-panel/steps'
 import { throttle } from '../../utils'
 export default {
   components: {
-    // vSteps,
-    vScrollPanel
+    vSteps
+    // vScrollPanel
   },
   data() {
     return {

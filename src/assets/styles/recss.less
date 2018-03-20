@@ -32,4 +32,19 @@
       background-color: #ecf5ff;
     }
   }
+  &-btn{
+    &--opera{
+      & > i {
+        cursor: pointer;
+        font-size: 16px;
+        transition: .3s color ease-in-out;
+        &:hover {
+          color: @blue;
+        }
+      }
+      & > i + i {
+        margin-left: 10px;
+      }
+    }
+  }
 }

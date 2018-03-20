@@ -31,6 +31,15 @@ const getUserInfo = Mock.mock({
               hidden: true,
               title: '教材列表'
             }
+          },
+          {
+            path: ':id',
+            name: 'Textbook_Detail',
+            componentPath: 'textbook/detail/index',
+            meta: {
+              hidden: true,
+              title: '教材列表'
+            }
           }
         ]
       },
@@ -129,7 +138,7 @@ const getUserInfo = Mock.mock({
         children: [
           {
             path: '/my/lecture',
-            name: 'My_lecture',
+            name: 'My_Lecture',
             componentPath: 'my/lecture/index',
             meta: {
               title: '我的讲义'
@@ -137,12 +146,32 @@ const getUserInfo = Mock.mock({
           },
           {
             path: '/my/draft',
-            name: 'My_draft',
-            componentPath: 'my/draft/index',
+            name: 'My_Draft',
+            componentPath: 'my/draft/layout',
+            redirect: '/my/draft/lecture',
             meta: {
-              hidden: true,
               title: '草稿箱'
-            }
+            },
+            children: [
+              {
+                path: '/my/draft/lecture',
+                name: 'My_Draft_Lecture',
+                meta: {
+                  title: '我的讲义',
+                  hidden: true
+                },
+                componentPath: 'my/draft/lecture/index'
+              },
+              {
+                path: '/my/draft/lecture-suite',
+                name: 'My_Draft_Lecture-suite',
+                meta: {
+                  title: '讲义套件',
+                  hidden: true
+                },
+                componentPath: 'my/draft/lecture-suite/index'
+              }
+            ]
           }
         ]
       }

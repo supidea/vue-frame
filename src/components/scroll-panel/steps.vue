@@ -1,9 +1,9 @@
 <template>
-  <ul class="scroll-panel-steps">
-    <li class="scroll-panel-steps__item">
-      <div class="scroll-panel-steps__hd"><span class="scroll-panel-steps__line"></span><i class="scroll-panel-steps__icon"></i></div>
-      <div class="scroll-panel-steps__bd">
-        <h3 class="scroll-panel-steps__title" @click="jump">斯蒂芬斯第三方第三方</h3>
+  <ul class="m-steps">
+    <li class="m-steps__item" :class="{'is-active': activeIndex === index}" v-for="(item, index) in data" :key="index" @click="jump(index)">
+      <div class="m-steps__hd"><span class="m-steps__line"></span><i class="m-steps__icon"></i></div>
+      <div class="m-steps__bd">
+        <div class="m-steps__title">{{item}}</div>
       </div>
     </li>
   </ul>
@@ -21,9 +21,20 @@ export default {
       default: 0
     }
   },
+  data() {
+    return {
+      activeIndex: 0
+    }
+  },
+  watch: {
+    active(val) {
+      this.activeIndex = val
+    }
+  },
   methods: {
-    jump() {
-      this.$emit('jump', this.active)
+    jump(index) {
+      this.activeIndex = index
+      this.$emit('jump', this.activeIndex)
     }
   }
 }
@@ -31,13 +42,11 @@ export default {
 
 <style lang="less">
 @import url('../../assets/styles/variables.less');
-.scroll-panel-steps{
+.m-steps{
   padding: 0;
   margin: 0;
   display: flex;
   flex-direction: column;
-  position: fixed;
-  width: 200px;
   &__item{
     list-style: none;
     display: flex;
@@ -68,7 +77,9 @@ export default {
   }
   &__bd{
     position: relative;
-    top: -1px;
+    top:1px;
+    color: #b9b9b9;
+    line-height: 1;
     padding: 0 0 10px 10px
   }
   &__item.is-active &__icon{
@@ -77,13 +88,5 @@ export default {
   &__item.is-active &__bd{
     color: @blue
   }
-  &__title{
-    font-size: 14px;
-    font-weight: normal;
-    margin: 0;
-    padding: 0;
-    line-height: 1;
-    color: #b9b9b9;
-  }
-}
-</style>
+ }
+ </style>

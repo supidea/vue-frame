@@ -41,6 +41,7 @@ export default {
       this.loading = true
       try {
         let res = await textbook.getTextbookList({ currentPage, pageSize, ...params })
+        this.currentPage = res.data.currentPage || 0
         this.pageTotal = res.data.total || 0
         this.list = res.data.list || []
       } catch (e) {

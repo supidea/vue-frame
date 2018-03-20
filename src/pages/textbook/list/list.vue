@@ -1,15 +1,15 @@
 <template>
   <article class="tb-list">
-    <section class="tb-list__item" v-for="item in data" :key="item.id">
+    <router-link tag="section" :to="{name: 'Textbook_Detail', params: {id: item.id}}" class="tb-list__item" v-for="item in data" :key="item.id">
       <div class="tb-list__hd">
         <span class="tb-list__icon"><i class="iconfont icon-jiaocaiitem"></i></span>
         <span class="tb-list__tit">{{item.name}}</span>
       </div>
       <div class="tb-list__bd">
         <span class="tb-list__tags">
-          <em>{{item.grade}}</em>
-          <em>{{item.season}}</em>
-          <em>{{item.type}}</em>
+          <em v-if="item.grade">{{item.grade}}</em>
+          <em v-if="item.season">{{item.season}}</em>
+          <em v-if="item.type">{{item.type}}</em>
         </span>
         <span class="tb-list__region">{{item.region}}</span>
       </div>
@@ -17,7 +17,7 @@
         <span class="tb-list__count">共<em>{{item.courseCount}}</em>次课</span>
         <span class="tb-list__year">{{item.year}}</span>
       </div>
-    </section>
+    </router-link>
   </article>
 </template>
 
