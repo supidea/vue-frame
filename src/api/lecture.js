@@ -20,5 +20,13 @@ export default {
   // 删除讲义套件
   removeLectureSuite(id) {
     return fetch.delete(`/lecturesuit/${id}`)
+  },
+  // 复制讲义套件
+  copyLectureSuite(lecturesuitId) {
+    return fetch.post(`/lecturesuit/${lecturesuitId}/copy`)
+  },
+  // 发布讲义套件
+  pubilshLectureSuite(lecturesuitId) {
+    return fetch.put(`/lecturesuit/${lecturesuitId}/publish`)
   }
 }

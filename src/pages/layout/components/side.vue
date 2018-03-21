@@ -1,7 +1,7 @@
 <template>
   <div class="side-menu">
     <el-menu :router="true" :default-active="defaultActive" :collapse="sidebar.isCollapse" background-color="#3587ff" text-color="#fff" active-text-color="#409eff">
-      <template v-for="item in routes" v-if="!item.meta.hidden && item.children && item.children.length > 0">
+      <template v-for="item in routes" v-if="item.meta && !item.meta.hidden && item.children && item.children.length > 0">
         <el-menu-item :index="item.path" :route="item" :key="item.path" v-if="item.noDropdown">
           <i class="side-menu__icon iconfont" :class="[item.icon]"></i>
           <span slot="title">{{item.meta && item.meta.title}}</span>

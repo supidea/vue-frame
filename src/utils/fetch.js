@@ -24,8 +24,8 @@ fetch.interceptors.response.use(res => {
     return Promise.reject(res.data)
   }
 }, error => {
-  console.log(error)
   Message.error('网络出问题啦！')
+  return Promise.reject(error)
 })
 
 export default fetch

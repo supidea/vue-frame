@@ -17,6 +17,7 @@ export default {
   },
   watch: {
     '$route'() {
+      console.log(this.$route)
       this.activeName = this.$route.name
     }
   },

@@ -34,17 +34,32 @@
   }
   &-btn{
     &--opera{
+      display: inline-flex;
       & > i {
         cursor: pointer;
-        font-size: 16px;
+        font-size: 14px;
         transition: .3s color ease-in-out;
-        &:hover {
-          color: @blue;
-        }
+        background: #ecf5ff;
+        height: 20px;
+        line-height: 20px;
+        padding: 0 5px;
+        border-radius: 2px;
+        color: @blue;
       }
       & > i + i {
-        margin-left: 10px;
+        margin-left: 5px;
       }
     }
+  }
+}
+.m-confirm{
+  &__tit{
+    font-size: 14px;
+    color: @red;
+  }
+  &__con{
+    font-size: 12px;
+    line-height: 18px !important;
+    margin-top: 5px !important;
   }
 }

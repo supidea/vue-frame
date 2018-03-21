@@ -1,3 +1,3 @@
 <template>
-  <div>sdfsdfsdf</div>
+  <div></div>
 </template>
