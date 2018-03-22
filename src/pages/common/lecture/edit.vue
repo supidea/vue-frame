@@ -1,6 +1,8 @@
 <template>
   <div>
-    <component :is="currentView"/>
+    <keep-alive>
+      <component :is="currentView"/>
+    </keep-alive>
     <el-button @click="currentView='step-one'">1</el-button>
     <el-button @click="currentView='step-two'">2</el-button>
   </div>

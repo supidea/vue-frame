@@ -6,15 +6,13 @@
       </el-form-item>
       <el-form-item label="年级">
         <el-select v-model="form.gradeId" disabled placeholder="请选择" style="width: 300px">
-          <el-option label="初一" value="111">
+          <el-option :label="item.label" :value="item.code" v-for="item in gradeList" :key="item.code">
           </el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="产品线">
         <el-radio-group v-model="form.productCode">
-          <el-radio :label="3">快乐学习</el-radio>
-          <el-radio :label="6">个性化</el-radio>
-          <el-radio :label="9">培英班</el-radio>
+          <el-radio :label="item.code" v-for="item in productList" :key="item.code">{{item.label}}</el-radio>
         </el-radio-group>
       </el-form-item>
       <el-form-item label="课程类型">
@@ -26,13 +24,20 @@
       </el-form-item>
       <el-form-item label="设定知识点">
         <el-button size="mini" icon="el-icon-plus">超小按钮</el-button>
+        <v-table border :data="tableData" :columns="columns" class="l-mt" size="mini" />
       </el-form-item>
     </el-form>
   </div>
 </template>
 
 <script>
+import vTable from '../../../components/table'
+import columns from './columns'
+import { app } from '../../../api'
 export default {
+  components: {
+    vTable
+  },
   data() {
     return {
       form: {
@@ -40,7 +45,28 @@ export default {
         productCode: 3,
         gradeId: '',
         lecturePointRequire: []
-      }
+      },
+      tableData: [],
+      columns: columns(this),
+      gradeList: [],
+      productList: [],
+      courseTypeList: []
+    }
+  },
+  mounted() {
+    this.getDictData()
+  },
+  methods: {
+    async getDictData() {
+      try {
+        let res = await app.getDictData('LECTURE', false)
+        const gradeList = res.data.find(v => v.key === 'gradeId')
+        this.gradeList = gradeList.list
+        const productList = res.data.find(v => v.key === 'productCode')
+        this.productList = productList.list
+        const courseTypeList = res.data.find(v => v.key === 'courseTypeId')
+        this.courseTypeList = courseTypeList.list
+      } catch (e) {}
     }
   }
 }
@@ -48,7 +74,6 @@ export default {
 
 <style>
 .p-knowledge-set {
-  height: 300px;
   padding: 20px;
 }
 </style>
