@@ -124,6 +124,15 @@ const getUserInfo = Mock.mock({
               hidden: true,
               title: '讲义列表'
             }
+          },
+          {
+            path: ':id',
+            name: 'Lecture_Detail',
+            componentPath: 'common/lecture/detail',
+            meta: {
+              hidden: true,
+              title: '讲义详情'
+            }
           }
         ]
       },
@@ -137,31 +146,49 @@ const getUserInfo = Mock.mock({
         },
         children: [
           {
-            path: '/my/lecture',
-            name: 'My_Lecture',
-            componentPath: 'my/lecture/layout',
-            redirect: '/my/lecture/list',
+            path: '/my/group',
+            name: 'My_Group',
+            componentPath: 'my/group/layout',
+            redirect: '/my/group/lecture',
             meta: {
-              title: '我的讲义'
+              title: '组讲义'
             },
             children: [
               {
-                path: '/my/lecture/list',
-                name: 'My_Lecture_List',
+                path: '/my/group/lecture',
+                name: 'My_Group_Lecture',
                 meta: {
                   title: '我的讲义',
                   hidden: true
                 },
-                componentPath: 'my/lecture/list/index'
+                componentPath: 'my/group/lecture/list'
               },
               {
-                path: '/my/lecture/suite',
-                name: 'My_Lecture_Suite',
+                path: '/my/group/lecture/:id/edit',
+                name: 'My_Group_Lecture_Edit',
+                meta: {
+                  title: '讲义编辑',
+                  hidden: true
+                },
+                componentPath: 'common/lecture/edit'
+              },
+              {
+                path: '/my/group/lecture/:id',
+                name: 'My_Group_Lecture_Detail',
+                meta: {
+                  title: '讲义详情',
+                  hidden: true
+                },
+                componentPath: 'common/lecture/detail'
+              },
+              {
+                path: '/my/group/suite',
+                name: 'My_Group_Suite',
                 meta: {
                   title: '讲义套件',
                   hidden: true
                 },
-                componentPath: 'my/lecture/suite/index'
+                componentPath: 'my/group/suite/index'
               }
             ]
           },

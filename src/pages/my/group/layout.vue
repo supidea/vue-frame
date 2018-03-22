@@ -1,8 +1,8 @@
 <template>
   <div class="draft">
     <el-tabs v-model="activeName" @tab-click="jump">
-      <el-tab-pane label="我的讲义" name="My_Lecture_List"></el-tab-pane>
-      <el-tab-pane label="讲义套件" name="My_Lecture_Suite"></el-tab-pane>
+      <el-tab-pane label="我的讲义" name="My_Group_Lecture"></el-tab-pane>
+      <el-tab-pane label="讲义套件" name="My_Group_Suite"></el-tab-pane>
     </el-tabs>
     <router-view></router-view>
   </div>

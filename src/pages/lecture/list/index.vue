@@ -15,6 +15,7 @@ import { lecture } from '../../../api'
 import vSearchBar from '../../../components/search-bar'
 import vTable from '../../../components/table'
 import vTopicFilterPanel from '../../../components/topic-filter-panel'
+import columns from './columns'
 export default {
   components: {
     vTable,
@@ -26,54 +27,7 @@ export default {
       searchKey: '',
       selectorResult: {},
       paper: this.$route.params.id || '',
-      columns: [
-        {
-          prop: 'name',
-          label: '讲义名称',
-          'show-overflow-tooltip': true
-        },
-        {
-          prop: 'gradeName',
-          label: '年级',
-          width: 100
-        },
-        {
-          prop: 'courseTypeName',
-          label: '课程类型',
-          width: 100
-        },
-        {
-          prop: 'regionName',
-          label: '地区',
-          width: 100
-        },
-        {
-          prop: 'shareUserName',
-          label: '分享人',
-          width: 100
-        },
-        {
-          prop: 'replicaNum',
-          label: '复制次数',
-          width: 100
-        },
-        {
-          prop: 'updateTime',
-          label: '更新时间',
-          width: 160
-        },
-        {
-          label: '操作',
-          width: 100,
-          align: 'center',
-          render: (h, params) => (
-            <div>
-              <span>查看</span>
-              <span>复制</span>
-            </div>
-          )
-        }
-      ],
+      columns: columns(this),
       tableData: [],
       currentPage: 1,
       pageSize: 10,
