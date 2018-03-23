@@ -1,23 +1,22 @@
 export default ctx => [
   {
-    prop: 'gradeName',
+    prop: 'pointName',
     label: '知识点'
   },
   {
-    prop: 'gradeName',
+    prop: 'requireName',
     label: '考试要求'
   },
   {
-    prop: 'gradeName',
+    prop: 'requireDetail',
     label: '具体要求'
   },
   {
-    prop: 'gradeName',
+    prop: 'frequencyName',
     label: '考查频率',
     width: 100
   },
   {
-    prop: 'gradeName',
     label: '操作',
     width: 80
   }

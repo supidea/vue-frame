@@ -5,6 +5,14 @@ export default {
   getLectureList({ initFlag = false, ...params }) {
     return fetch.post(`/lecture/list`, { initFlag, ...params })
   },
+  // 获取讲义详情
+  getLectureEditInfo(id) {
+    return fetch.get(`/lecture/${id}/edit`)
+  },
+  // 获取知识点对应的考试要求
+  getLecturePointRequire(pointIds) {
+    return fetch.get(`/lecture/point/require?pointIds=${pointIds}`)
+  },
   // 删除讲义
   removeLeture(id) {
     return fetch.delete(`/lecture/${id}`)
