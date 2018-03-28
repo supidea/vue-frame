@@ -1,10 +1,12 @@
 <template>
-  <div v-loading="loading">
-    <keep-alive>
-      <component :is="currentView" :data="data"/>
-    </keep-alive>
+  <div>
     <el-button @click="currentView='step-one'">1</el-button>
     <el-button @click="currentView='step-two'">2</el-button>
+    <div v-loading="loading" class="m-box" style="padding: 20px">
+      <keep-alive>
+        <component :is="currentView" :data="data" v-if="flag"/>
+      </keep-alive>
+    </div>
   </div>
 </template>
 
@@ -19,6 +21,7 @@ export default {
     return {
       currentView: 'step-one',
       loading: false,
+      flag: false,
       data: {}
     }
   },
@@ -32,6 +35,7 @@ export default {
       try {
         let res = await lecture.getLectureEditInfo(id)
         this.data = res.data
+        this.flag = true
         console.log(this.data)
       } catch (e) {}
       this.loading = false

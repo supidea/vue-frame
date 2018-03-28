@@ -18,17 +18,17 @@ export default ctx => [
   {
     prop: 'gradeName',
     label: '年级',
-    width: 100
+    width: 80
   },
   {
     prop: 'courseTypeName',
     label: '课程类型',
-    width: 100
+    width: 80
   },
   {
     prop: 'source',
     label: '来源',
-    width: 90,
+    width: 70,
     render: (h, scope) => (
       <span>
         {source[scope.row.source]}
@@ -43,11 +43,11 @@ export default ctx => [
   {
     prop: 'shareUserName',
     label: '分享人',
-    width: 100
+    width: 90
   },
   {
     label: '状态',
-    width: 100,
+    width: 80,
     render: (h, scope) => (
       <span>
         {status[scope.row.status]}
@@ -66,7 +66,7 @@ export default ctx => [
   {
     prop: 'replicaNum',
     label: '复制次数',
-    width: 90
+    width: 80
   },
   {
     prop: 'updateTime',
@@ -84,11 +84,7 @@ export default ctx => [
         <i class="iconfont icon-fenxiang" title="分享" />
         <router-link tag="i" class="iconfont icon-bianji" title="编辑" to={{ name: 'My_Group_Lecture_Edit', params: { id: params.row.id } }}></router-link>
         <i class="iconfont icon-fabu" title="发布" />
-        <i
-          class="iconfont icon-shanchu"
-          title="删除"
-          onClick={() => ctx.remove(params)}
-        />
+        <i class="iconfont icon-shanchu" title="删除" onClick={() => ctx.remove(params)}/>
       </div>
     )
   }

@@ -5,7 +5,8 @@ export default ctx => [
   },
   {
     prop: 'requireName',
-    label: '考试要求'
+    label: '考试要求',
+    width: 80
   },
   {
     prop: 'requireDetail',
@@ -18,6 +19,16 @@ export default ctx => [
   },
   {
     label: '操作',
-    width: 80
+    width: 80,
+    align: 'center',
+    render: (h, params) => (
+      <div class="m-table-btn--opera">
+        <i
+          class="iconfont icon-shanchu"
+          title="删除"
+          onClick={() => ctx.remove(params)}
+        />
+      </div>
+    )
   }
 ]

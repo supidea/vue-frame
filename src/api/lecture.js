@@ -13,6 +13,10 @@ export default {
   getLecturePointRequire(pointIds) {
     return fetch.get(`/lecture/point/require?pointIds=${pointIds}`)
   },
+  // 创建或修改讲义
+  updateLecture(params) {
+    return fetch.post('/lecture', params)
+  },
   // 删除讲义
   removeLeture(id) {
     return fetch.delete(`/lecture/${id}`)

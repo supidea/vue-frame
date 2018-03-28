@@ -46,14 +46,13 @@ export default {
   },
   watch: {
     visible(val) {
-      if (val) this.getPointTree({ gradeId: this.gradeId })
+      if (val) {
+        this.getPointTree({ gradeId: this.gradeId })
+      }
     },
     filterText(val) {
       this.$refs.tree.filter(val)
     }
-  },
-  created() {
-    this.getPointTree({ gradeId: this.gradeId })
   },
   methods: {
     // 根据年级ID获取知识树
@@ -61,6 +60,9 @@ export default {
       try {
         let res = await knowledge.getPointTree(data)
         this.data = res.data.list || []
+        this.$nextTick(() => {
+          this.selectedPoints = this.$refs.tree.getCheckedNodes()
+        })
       } catch (e) {
         this.$message.error(e)
       }
@@ -89,7 +91,9 @@ export default {
         const Ids = res.data.list || []
         this.$emit('handler-select', Ids)
         this.handleClose()
-      } catch (e) {}
+      } catch (e) {
+        this.$message.error(e)
+      }
       this.loading = false
     },
     // 筛选知识点

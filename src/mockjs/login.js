@@ -195,7 +195,7 @@ const getUserInfo = Mock.mock({
           {
             path: '/my/draft',
             name: 'My_Draft',
-            componentPath: 'my/draft/layout',
+            componentPath: 'draft/layout',
             redirect: '/my/draft/lecture',
             meta: {
               title: '草稿箱'
@@ -208,7 +208,7 @@ const getUserInfo = Mock.mock({
                   title: '我的讲义',
                   hidden: true
                 },
-                componentPath: 'my/draft/lecture/index'
+                componentPath: 'draft/lecture/index'
               },
               {
                 path: '/my/draft/lecture-suite',
@@ -217,14 +217,14 @@ const getUserInfo = Mock.mock({
                   title: '讲义套件',
                   hidden: true
                 },
-                componentPath: 'my/draft/lecture-suite/index'
+                componentPath: 'draft/lecture-suite/index'
               }
             ]
           },
           {
             path: '/my/schedule',
             name: 'My_Schedule',
-            componentPath: 'my/schedule/index',
+            componentPath: 'schedule/index',
             meta: {
               title: '我的日程表'
             }
@@ -232,7 +232,7 @@ const getUserInfo = Mock.mock({
           {
             path: '/my/course',
             name: 'My_Course',
-            componentPath: 'my/course/index',
+            componentPath: 'course/index',
             meta: {
               title: '我的课程'
             }
