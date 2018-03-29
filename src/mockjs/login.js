@@ -170,7 +170,7 @@ const getUserInfo = Mock.mock({
                   title: '讲义编辑',
                   hidden: true
                 },
-                componentPath: 'common/lecture/edit'
+                componentPath: 'common/lecture/create/index'
               },
               {
                 path: '/my/group/lecture/:id',
@@ -182,13 +182,22 @@ const getUserInfo = Mock.mock({
                 componentPath: 'common/lecture/detail'
               },
               {
-                path: '/my/group/suite',
-                name: 'My_Group_Suite',
+                path: '/my/group/lecture-suite',
+                name: 'My_Group_Lecture-suite',
                 meta: {
                   title: '讲义套件',
                   hidden: true
                 },
-                componentPath: 'my/group/suite/index'
+                componentPath: 'my/group/lecture-suite/index'
+              },
+              {
+                path: '/my/group/lecture-suite/:id',
+                name: 'My_Group_Lecture-suite_Edit',
+                meta: {
+                  title: '讲义套件编辑',
+                  hidden: true
+                },
+                componentPath: 'common/lecture-suite/index'
               }
             ]
           },

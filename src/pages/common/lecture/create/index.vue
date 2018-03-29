@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { lecture } from '../../../api'
+import { lecture } from '../../../../api'
 export default {
   components: {
     'step-one': () => import('./set-knowledge'),

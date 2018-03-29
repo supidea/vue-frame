@@ -2,7 +2,7 @@
   <div class="draft">
     <el-tabs v-model="activeName" @tab-click="jump">
       <el-tab-pane label="我的讲义" name="My_Group_Lecture"></el-tab-pane>
-      <el-tab-pane label="讲义套件" name="My_Group_Suite"></el-tab-pane>
+      <el-tab-pane label="讲义套件" name="My_Group_Lecture-suite"></el-tab-pane>
     </el-tabs>
     <router-view></router-view>
   </div>
@@ -27,3 +27,10 @@ export default {
   }
 }
 </script>
+
+<style lang="less">
+.draft{
+  display: flex;
+  flex-direction: column;
+}
+</style>

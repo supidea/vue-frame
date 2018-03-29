@@ -37,9 +37,9 @@
 
 <script>
 import vKnowledgeDialog from './checked-knowledge-dialog'
-import vTable from '../../../components/table'
+import vTable from '../../../../components/table'
 import columns from './columns'
-import { app, lecture } from '../../../api'
+import { app, lecture } from '../../../../api'
 export default {
   components: {
     vTable,

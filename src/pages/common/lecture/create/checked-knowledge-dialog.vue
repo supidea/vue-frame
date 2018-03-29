@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { knowledge, lecture } from '../../../api'
+import { knowledge, lecture } from '../../../../api'
 export default {
   props: {
     defaultCheckedKeys: {
@@ -106,7 +106,7 @@ export default {
 </script>
 
 <style lang="less">
-@import '../../../assets/styles/variables.less';
+@import '../../../../assets/styles/variables.less';
 .checked-knowledge-dialog {
   border: 1px solid @baseBorderColor;
   display: flex;

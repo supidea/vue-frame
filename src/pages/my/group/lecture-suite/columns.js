@@ -46,7 +46,7 @@ export default ctx => [
       <div class="m-table-btn--opera">
         <i class="iconfont icon-chakan" title="查看" />
         <i class="iconfont icon-fuzhi" title="复制" onClick={() => ctx.copy(params.row)} />
-        <i class="iconfont icon-bianji" title="编辑" />
+        <router-link tag="i" class="iconfont icon-bianji" title="编辑" to={{ name: 'My_Group_Lecture-suite_Edit', params: { id: params.row.id } }}></router-link>
         <i class="iconfont icon-fabu" title="发布" onClick={() => ctx.publish(params.row)} />
         <i class="iconfont icon-shanchu" title="删除" onClick={() => ctx.remove(params)} />
       </div>
