@@ -25,9 +25,21 @@ export default {
   getLectureLibList(params) {
     return fetch.post(`/lecture/lib/list`, params)
   },
-  // 获取讲义套件
+  // 获取讲义套件列表
   getLectureSuiteList({ status = 'INIT', ...params }) {
     return fetch.post(`/lecturesuit/list`, { status, ...params })
+  },
+  // 获取讲义套件详情
+  getLectureSuiteDetail(lecturesuitId) {
+    return fetch.get(`/lecturesuit/${lecturesuitId}`)
+  },
+  // 添加讲义套件模块
+  addLectureSuiteModule(params) {
+    return fetch.post('/lecturesuit/template', params)
+  },
+  // 删除讲义套件中的教学步骤模块
+  removeLectureSuiteModule(templateId) {
+    return fetch.delete(`/lecturesuit/template/${templateId}`)
   },
   // 删除讲义套件
   removeLectureSuite(id) {

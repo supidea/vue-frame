@@ -1,4 +1,5 @@
 import * as types from '../mutation-types'
+import { Message } from 'element-ui'
 import { app } from '../../api'
 
 const state = {
@@ -7,10 +8,17 @@ const state = {
   sidebar: {
     isCollapse: !!+window.localStorage.getItem('sidebarStatus')
   },
+  // 用户的知识体系，科目，学段
   sgrOptions: [],
+  // 知识体系选项
   regionOptions: { key: '', label: '', list: [] },
+  // 学段选项
   periodOptions: { key: '', label: '', list: [] },
-  subjectOptions: { key: '', label: '', list: [] }
+  // 科目选项
+  subjectOptions: { key: '', label: '', list: [] },
+  // 教学步骤
+  tearchSteps: [],
+  types: {LECTURE: '讲义', PAPER: '试卷'}
 }
 
 const mutations = {
@@ -33,6 +41,9 @@ const mutations = {
   },
   [types.SET_SUBJECT_OPTIONS](state, data) {
     state.subjectOptions = data
+  },
+  [types.SET_TEACHER_STEPS](state, data) {
+    state.tearchSteps = data
   }
 }
 
@@ -40,6 +51,7 @@ const actions = {
   toggleSidebar({ commit }) {
     commit(types.TOGGLE_SIDEBAR)
   },
+  // 获取基础数据
   async getBaseOptions({ commit }) {
     try {
       let res = await app.getDictData('BASE')
@@ -52,6 +64,15 @@ const actions = {
       return res
     } catch (err) {
       return err
+    }
+  },
+  // 获取教学步骤
+  async getTeacherSteps({ commit }) {
+    try {
+      let res = await app.getTeacherSteps()
+      commit(types.SET_TEACHER_STEPS, res.data)
+    } catch (e) {
+      Message.error(e)
     }
   }
 }
