@@ -22,7 +22,7 @@
 import vSide from './components/side'
 import vHeader from './components/header'
 import vBreadcrumb from '@/components/breadcrumb'
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 export default {
   computed: {
     ...mapState({
@@ -34,6 +34,14 @@ export default {
     vBreadcrumb,
     vSide,
     vHeader
+  },
+  created() {
+    this.getBaseData('ALL')
+  },
+  methods: {
+    ...mapActions([
+      'getBaseData'
+    ])
   }
 }
 </script>

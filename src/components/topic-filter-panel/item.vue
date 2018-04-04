@@ -2,6 +2,7 @@
   <dl class="topic-filter-panel__item">
     <dt class="topic-filter-panel__label" :style="{width: labelWidth}">{{label}}：</dt>
     <dd class="topic-filter-panel__tags" ref="tags" :style="{height: height+'px'}">
+      <span class="topic-filter-panel__tag" :class="{'is-active': emptyData.code === value}" @click="handleSelect(emptyData)">{{emptyData.label}}</span>
       <span class="topic-filter-panel__tag" :class="{'is-active': item.code === value}" @click="handleSelect(item)" v-for="item in options" :key="item.code">{{item.label}}</span>
     </dd>
     <dd class="topic-filter-panel__more">
@@ -32,7 +33,8 @@ export default {
       hasExpandBtn: false,
       minHeight: 0,
       maxHeight: 0,
-      height: ''
+      height: '',
+      emptyData: { code: '', label: '不限', dataValue: null }
     }
   },
   mounted() {

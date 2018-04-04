@@ -4,12 +4,12 @@
       <v-step class="l-mb" :data="steps" :select="addStep"/>
       <v-content :data="info.templateList">
         <template slot-scope="scope">
-          <span @click="openDialog">绑定</span>
+          <span @click="openDialog(scope)">绑定</span>
           <span @click="removeStep(scope)">删除</span>
         </template>
       </v-content>
     </div>
-    <v-dialog :visible.sync="dialogVisible"/>
+    <v-dialog :grade-id="info.gradeId" :data="selectedData" :bind-success="handlerBind" :visible.sync="dialogVisible"/>
   </div>
 </template>
 
@@ -28,7 +28,8 @@ export default {
   data() {
     return {
       info: {},
-      dialogVisible: false
+      dialogVisible: false,
+      selectedData: {}
     }
   },
   computed: {
@@ -75,8 +76,17 @@ export default {
         if (e !== 'cancel') this.$message.error(e)
       }
     },
-    openDialog() {
+    openDialog(data) {
+      this.selectedData = data.row
       this.dialogVisible = true
+    },
+    handlerBind(val) {
+      if (!this.info.templateList) return false
+      let item = this.info.templateList.find(v => v.id === val.id)
+      item.templateName = val.templateName
+      item.refType = val.refType
+      item.refId = val.refId
+      item.bindStatus = val.bindStatus
     }
   }
 }

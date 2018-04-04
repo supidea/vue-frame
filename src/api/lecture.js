@@ -52,5 +52,9 @@ export default {
   // 发布讲义套件
   pubilshLectureSuite(lecturesuitId) {
     return fetch.put(`/lecturesuit/${lecturesuitId}/publish`)
+  },
+  // 绑定讲义套件
+  bindLectureSuite(params) {
+    return fetch.put('/lecturesuit/template/bind', params)
   }
 }

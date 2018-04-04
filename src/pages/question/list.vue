@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-search-bar class="l-mb" placeholder="请输入sdfsdfsf内容" v-model="value" size="small" style="width: 300px" />
-    <v-topic-selector-panel class="l-mb" label-width="80px" type="PAPER" :value.sync="selectorValue" @change="change" />
+    <v-topic-selector-panel class="l-mb" label-width="80px" :type="['yearId','regionId','itemTypeId','diffLevelId','sourceDepartmentId','productCode']" :value.sync="selectorValue" @change="change" />
     <v-table border :data="tableData" :columns="columns" />
     <div class="l-mt l-tar">
       <el-pagination background layout="total, prev, pager, next" :total="1000" class="m-pagination">

@@ -1,4 +1,13 @@
-export const lectureColumns = [
+export const lectureColumns = ctx => [
+  {
+    width: 40,
+    align: 'center',
+    render: (h, params) => {
+      return (
+        <el-checkbox value={params.row.id === ctx.selectedData.id} onChange={() => ctx.select(params.row)}></el-checkbox>
+      )
+    }
+  },
   {
     prop: 'name',
     label: '讲义名称',
@@ -26,25 +35,34 @@ export const lectureColumns = [
   }
 ]
 
-export const paperColumns = [
+export const paperColumns = ctx => [
   {
-    prop: 'name',
+    width: 40,
+    align: 'center',
+    render: (h, params) => {
+      return (
+        <el-checkbox value={params.row.id === ctx.selectedData.id} onChange={() => ctx.select(params.row)}></el-checkbox>
+      )
+    }
+  },
+  {
+    prop: 'paperName',
     label: '试卷名称',
     'show-overflow-tooltip': true
   },
   {
-    prop: 'gradeName',
+    prop: 'grade',
     label: '年级',
     width: 80
   },
   {
-    prop: 'courseTypeName',
+    prop: 'paperType',
     label: '试卷类型',
     width: 100
   },
   {
-    prop: 'regionName',
-    label: '更新',
+    prop: 'updateUser',
+    label: '更新人',
     width: 100
   },
   {

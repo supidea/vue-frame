@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-search-bar class="l-mb" placeholder="请输入教材名称" :value="searchKey" :loading="loading" @search="search" size="small" style="width: 300px"/>
-    <v-topic-filter-panel class="l-mb" label-width="80px" type="TEXTBOOK" :value.sync="selectorResult" @change="handlerfilter"/>
+    <v-topic-filter-panel class="l-mb" label-width="80px" :type="['yearId','regionId','gradeId','textbookTypeId','seasonId','productCode']" :value.sync="selectorResult" @change="handlerfilter"/>
     <v-list :data="list"/>
     <div class="l-mt l-tar" v-if="pageTotal > 0">
       <el-pagination background layout="total, prev, pager, next" @current-change="changePage" :current-page="currentPage" :page-size="pageSize" :total="pageTotal" class="m-pagination">

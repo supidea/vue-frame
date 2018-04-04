@@ -8,6 +8,7 @@ const state = {
   sidebar: {
     isCollapse: !!+window.localStorage.getItem('sidebarStatus')
   },
+  baseData: [],
   // 用户的知识体系，科目，学段
   sgrOptions: [],
   // 知识体系选项
@@ -16,9 +17,35 @@ const state = {
   periodOptions: { key: '', label: '', list: [] },
   // 科目选项
   subjectOptions: { key: '', label: '', list: [] },
+  // // 年份选项
+  // yearOptions: { key: '', label: '', list: [] },
+  // // 年级选项
+  // gradeOptions: { key: '', label: '', list: [] },
+  // // 教材类型选项
+  // textbookTypeOptions: { key: '', label: '', list: [] },
+  // // 课程季选项
+  // seasonOptions: { key: '', label: '', list: [] },
+  // // 产品线选项
+  // productOptions: { key: '', label: '', list: [] },
+  // // 题型选项
+  // itemTypeOptions: { key: '', label: '', list: [] },
+  // // 试卷类型选项
+  // paperTypeOptions: { key: '', label: '', list: [] },
+  // // 难度选项
+  // LevelOptions: { key: '', label: '', list: [] },
+  // // 来源部门选项
+  // departmentOptions: { key: '', label: '', list: [] },
   // 教学步骤
   tearchSteps: [],
-  types: {LECTURE: '讲义', PAPER: '试卷'}
+  types: { LECTURE: '讲义', PAPER: '试卷' }
+}
+
+const getters = {
+  getBaseOptions: state => (...params) => {
+    return state.baseData.filter(v => {
+      return params.includes(v.key)
+    })
+  }
 }
 
 const mutations = {
@@ -42,8 +69,38 @@ const mutations = {
   [types.SET_SUBJECT_OPTIONS](state, data) {
     state.subjectOptions = data
   },
+  // [types.SET_GRADE_OPTIONS](state, data) {
+  //   state.gradeOptions = data
+  // },
+  // [types.SET_TBTYPE_OPTIONS](state, data) {
+  //   state.textbookTypeOptions = data
+  // },
+  // [types.SET_SEASON_OPTIONS](state, data) {
+  //   state.seasonOptions = data
+  // },
+  // [types.SET_PRODUCT_OPTIONS](state, data) {
+  //   state.productOptions = data
+  // },
+  // [types.SET_ITEMTYPE_OPTIONS](state, data) {
+  //   state.itemTypeOptions = data
+  // },
+  // [types.SET_PAPERTYPE_OPTIONS](state, data) {
+  //   state.paperTypeOptions = data
+  // },
+  // [types.SET_YEAR_OPTIONS](state, data) {
+  //   state.yearOptions = data
+  // },
+  // [types.SET_LEVEL_OPTIONS](state, data) {
+  //   state.LevelOptions = data
+  // },
+  // [types.SET_DEPARTMENT_OPTIONS](state, data) {
+  //   state.departmentOptions = data
+  // },
   [types.SET_TEACHER_STEPS](state, data) {
     state.tearchSteps = data
+  },
+  [types.SET_BASEDATA](state, data) {
+    state.baseData = data
   }
 }
 
@@ -66,6 +123,46 @@ const actions = {
       return err
     }
   },
+  // 获取数据
+  async getBaseData({ commit }) {
+    try {
+      let res = await app.getDictData('ALL')
+      commit(types.SET_BASEDATA, res.data)
+      // res.data.forEach(v => {
+      //   switch (v.key) {
+      //     case 'gradeId':
+      //       commit(types.SET_GRADE_OPTIONS, v)
+      //       break
+      //     case 'textbookTypeId':
+      //       commit(types.SET_TBTYPE_OPTIONS, v)
+      //       break
+      //     case 'seasonId':
+      //       commit(types.SET_SEASON_OPTIONS, v)
+      //       break
+      //     case 'productCode':
+      //       commit(types.SET_PRODUCT_OPTIONS, v)
+      //       break
+      //     case 'itemTypeId':
+      //       commit(types.SET_ITEMTYPE_OPTIONS, v)
+      //       break
+      //     case 'paperTypeId':
+      //       commit(types.SET_PAPERTYPE_OPTIONS, v)
+      //       break
+      //     case 'yearId':
+      //       commit(types.SET_YEAR_OPTIONS, v)
+      //       break
+      //     case 'diffLevelId':
+      //       commit(types.SET_LEVEL_OPTIONS, v)
+      //       break
+      //     case 'sourceDepartmentId':
+      //       commit(types.SET_DEPARTMENT_OPTIONS, v)
+      //       break
+      //   }
+      // })
+    } catch (e) {
+      Message.error(e)
+    }
+  },
   // 获取教学步骤
   async getTeacherSteps({ commit }) {
     try {
@@ -79,6 +176,7 @@ const actions = {
 
 export default {
   state,
+  getters,
   mutations,
   actions
 }
