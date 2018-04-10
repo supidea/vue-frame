@@ -9,11 +9,12 @@
       </el-form-item>
       <el-form-item label="类型">
         <el-select v-model="searchForm.paperTypeId" placeholder="选择试卷类型" @change="search">
+          <el-option label="不限" value=""></el-option>
           <el-option :label="item.label" :value="item.code" v-for="item in paperTypeOptions" :key="item.code"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item>
-        <el-input placeholder="讲义名称" v-model="searchForm.searchKey" @keyup.enter.native="search"></el-input>
+        <el-input placeholder="试卷名称" v-model="searchForm.searchKey" @keyup.enter.native="search"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="search">查询</el-button>
@@ -36,7 +37,6 @@ export default {
     vTable
   },
   props: {
-    visible: Boolean,
     gradeId: {
       type: [String, Number],
       default: ''
@@ -70,11 +70,6 @@ export default {
     paperTypeOptions() {
       let paperType = this.$store.getters.getBaseOptions('paperTypeId')
       return paperType.length > 0 ? paperType[0].list : []
-    }
-  },
-  watch: {
-    visible(val) {
-      this.getPaperList(this.searchForm)
     }
   },
   created() {

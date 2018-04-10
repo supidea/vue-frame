@@ -5,7 +5,7 @@
       <el-tab-pane :label="value" :name="key" v-for="(value, key) in types" :key="key"></el-tab-pane>
     </el-tabs>
     <keep-alive>
-      <component :is="activeName" v-bind="$attrs" :visible="visible" :select="select" :selected-data="selectedData"></component>
+      <component :is="activeName" ref="tb" v-bind="$attrs" :select="select" :selected-data="selectedData"></component>
     </keep-alive>
     <div slot="footer">
       <el-button size="mini" @click="close">取 消</el-button>

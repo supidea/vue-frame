@@ -31,10 +31,6 @@ export default {
     vTable
   },
   props: {
-    visible: {
-      type: Boolean,
-      default: false
-    },
     gradeId: {
       type: [String, Number],
       default: ''
@@ -63,11 +59,6 @@ export default {
     gradeOptions() {
       let grade = this.$store.getters.getBaseOptions('gradeId')
       return grade.length > 0 ? grade[0].list : []
-    }
-  },
-  watch: {
-    visible(val) {
-      this.getLectureList(this.searchForm)
     }
   },
   created() {

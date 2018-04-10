@@ -12,10 +12,10 @@
 // dialog样式
 .m-dialog{
   overflow: hidden;
-  border-radius: @baseBorderRadius;
+  border-radius: var(--border-radius);
   & > .el-dialog__header {
     background: #f5f7f9;
-    border-bottom: 1px solid @baseBorderColor;
+    border-bottom: var(--border);
     padding-top: 10px;
     & > .el-dialog__title {
       font-size: 14px;
@@ -45,7 +45,11 @@
         line-height: 20px;
         padding: 0 5px;
         border-radius: 2px;
-        color: @blue;
+        color: var(--blue);
+        &.is-disabled{
+          --blue: var(--gray-lighter);
+          cursor: not-allowed;
+        }
       }
       & > i + i {
         margin-left: 5px;
@@ -58,7 +62,7 @@
 .m-confirm{
   &__tit{
     font-size: 14px;
-    color: @red;
+    color: var(--red);
   }
   &__con{
     font-size: 12px;
@@ -70,6 +74,6 @@
 // 框
 .m-box{
   background: #fff;
-  border: 1px solid @baseBorderColor;
-  border-radius: @baseBorderRadius;
+  border: var(--border);
+  border-radius: var(--border-radius);
 }

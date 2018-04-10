@@ -25,7 +25,7 @@ export default ctx => [
     align: 'center',
     render: (h, params) => (
       <div class="m-table-btn--opera">
-        <i class="iconfont icon-bianji" title="编辑" />
+        <router-link tag="i" class="iconfont icon-bianji" title="编辑" to={{ name: 'My_Draft_Lecture-suite_Edit', params: { id: params.row.id } }}></router-link>
         <i class="iconfont icon-shanchu" title="删除" onClick={() => ctx.remove(params)} />
       </div>
     )
