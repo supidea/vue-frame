@@ -5,8 +5,8 @@
  * @param {Number} mustRun 至少多长时间触发一次
  */
 export function throttle(func, wait, mustRun) {
-  let timeout, startTime = new Date()
-
+  let timeout, startTime = +new Date()
+  console.log(arguments)
   return function () {
     let context = this, args = arguments, curTime = +new Date()
 
@@ -26,7 +26,7 @@ export function throttle(func, wait, mustRun) {
  * 防抖动函数 就是让某个函数在上一次执行后，满足等待某个时间内不再触发此函数后再执行，而在这个等待时间内再次触发此函数，等待时间会重新计算。
  * @param {Function} func 回调函数
  * @param {Number} wait 延迟时间
- * @param {Boolean} immediate 时间开始时触发还是时间结束后触发
+ * @param {Boolean} immediate 时间开始时触发还是时间结束后触发,true开始时触发，false结束后触发
  */
 export function debounce(func, wait, immediate) {
   let timeout
