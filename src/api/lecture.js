@@ -64,5 +64,13 @@ export default {
   // 绑定讲义套件
   bindLectureSuite(params) {
     return fetch.put('/lecturesuit/template/bind', params)
+  },
+  // 课次绑定讲义套件
+  courseBindLectureSuite(params) {
+    return fetch.post('/user/schedule/lectureSuit/bind', params)
+  },
+  // 课次解绑讲义套件
+  courseUnbindLectureSuite(bindRecordId) {
+    return fetch.put(`/user/schedule/lectureSuit/unbound/${bindRecordId}`)
   }
 }

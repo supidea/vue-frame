@@ -100,9 +100,8 @@ export default {
       try {
         const html = `<p class="m-confirm__tit">复制讲义套件,是否继续?</p><p class="m-confirm__con">${item.name}</p>`
         await this.$confirm(html, {dangerouslyUseHTMLString: true, type: 'warning'})
-        const res = await lecture.copyLectureSuite(item.id)
-        const record = {...item, id: res.data}
-        this.tableData.unshift(record)
+        await lecture.copyLectureSuite(item.id)
+        this.getLectureSuiteList()
       } catch (e) {
         e !== 'cancel' && this.$message.error(e)
       }
@@ -112,8 +111,8 @@ export default {
       try {
         const html = `<p class="m-confirm__tit">发布讲义套件,是否继续?</p><p class="m-confirm__con">${item.name}</p>`
         await this.$confirm(html, {dangerouslyUseHTMLString: true, type: 'warning'})
-        const res = await lecture.pubilshLectureSuite(item.id)
-        console.log(res)
+        await lecture.pubilshLectureSuite(item.id)
+        this.getLectureSuiteList()
       } catch (e) {
         e !== 'cancel' && this.$message.error(e)
       }

@@ -1,5 +1,12 @@
 <template>
   <div>
+    <div class="schedule-teacher-info">
+      <img alt="" :src="avatar" class="avatar">
+      <div class="profile">
+        <h3 class="name">{{name}}老师的日程安排</h3>
+        <p class="des">{{describe}}</p>
+      </div>
+    </div>
     <div class="schedule-table-header l-mb">
       <div class="left">
         <el-button @click="toToday" size="small">返回今天</el-button>
@@ -16,23 +23,28 @@
     <div class="schedule-table__wrap">
       <v-table :current-date="currentDate" :start-time="startTime" :end-time="endTime" :days="days" />
       <div class="schedule-table-course__wrap" v-loading="loading" element-loading-text="拼命加载中">
-        <v-course v-for="item in courseList" :data="item" :key="item.teacherId" :start-time="startTime" :end-time="endTime" />
+        <v-course v-for="item in courseList" :data="item" :key="item.teacherId" :start-time="startTime" :end-time="endTime" :bind="bind" :unbind="unbind"/>
       </div>
     </div>
+    <v-dialog :visible.sync="visible" :data="selectedCourse" @bind-success="handlerBind"/>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import moment from 'moment'
 import vTable from './table'
 import vDate from './date'
 import vCourse from './course'
-import { user } from '../../api'
+import vDialog from './bind-dialog'
+import { user, lecture } from '../../api'
 import { debounce } from '../../utils'
+
 export default {
   components: {
     vTable,
     vCourse,
+    vDialog,
     vDate
   },
   data() {
@@ -42,7 +54,9 @@ export default {
       courseList: [],
       loading: false,
       startTime: '8:00',
-      endTime: '24:00'
+      endTime: '24:00',
+      visible: false,
+      selectedCourse: {}
     }
   },
   computed: {
@@ -71,7 +85,12 @@ export default {
         arr.push(date)
       }
       return arr
-    }
+    },
+    ...mapState({
+      avatar: state => state.user.avatar,
+      name: state => state.user.name,
+      describe: state => state.user.describe
+    })
   },
   watch: {
     currentDate: debounce(
@@ -83,9 +102,6 @@ export default {
     )
   },
   created() {
-    let l = moment('17:30', 'HH:mm')
-    let r = moment('22:00', 'HH:mm')
-    console.log(r.diff(l, 'hour', true))
     this.getSchedule()
   },
   methods: {
@@ -106,7 +122,6 @@ export default {
       try {
         let res = await user.getSchedule(this.startDate, this.endDate)
         this.courseList = this.convertData(res.data)
-        // console.log(this.courseList)
       } catch (e) {
         this.$message.error(e)
       }
@@ -117,7 +132,6 @@ export default {
       this.days.forEach(v => {
         const rest = arr.filter(p => p.courseDate === v)
         const nArr = this.sortCourse(rest)
-        console.log(nArr)
         temp = [...temp, ...nArr]
       })
       return temp.map((v, i) => {
@@ -185,12 +199,63 @@ export default {
       let stB = moment(startTimeB, 'HH:mm').valueOf()
       let etB = moment(endTimeB, 'HH:mm').valueOf()
       return stA >= etB || stB >= etA
+    },
+    // 弹出绑定窗口
+    bind(data) {
+      Object.assign(this.selectedCourse, data)
+      this.visible = true
+    },
+    // 解除绑定
+    async unbind(data) {
+      try {
+        const html = `<p class="m-confirm__tit">确定解除讲义《${data.lectureSuitName}》与课次的绑定关系？</p><p class="m-confirm__con">解绑后可重新绑定</p>`
+        await this.$confirm(html, {dangerouslyUseHTMLString: true, type: 'warning'})
+        await lecture.courseUnbindLectureSuite(data.bindRecordId)
+        this.getSchedule()
+      } catch (e) {
+        e !== 'cancel' && this.$message.error(e)
+      }
+    },
+    // 绑定成功后回调刷新页面
+    handlerBind() {
+      this.getSchedule()
     }
   }
 }
 </script>
 
 <style lang="less">
+.schedule-teacher-info{
+  display: flex;
+  align-items: center;
+  border-bottom: var(--border);
+  padding: 20px 0 30px;
+  margin-bottom: 30px;
+  & > .avatar{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+  }
+  & > .profile{
+    margin-left: 20px;
+    & > .name {
+      font-size: 16px;
+      padding: 0;
+      margin: 0 0 10px 0;
+      font-weight: normal;
+      height: 30px;
+      line-height: 30px;
+    }
+    & > .des {
+      font-size: 12px;
+      margin: 0;
+      padding: 0;
+      color: var(--gray-light);
+      height: 20px;
+      line-height: 20px;
+    }
+  }
+}
 .schedule-table-header {
   display: flex;
   justify-content: space-between;

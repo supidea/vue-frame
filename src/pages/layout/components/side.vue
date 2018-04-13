@@ -100,4 +100,13 @@ export default {
     }
   }
 }
+.el-menu--vertical{
+  .el-menu-item.is-active{
+    background: @sideMenuItemActiveBgc !important;
+    color: @blue;
+    .side-menu__sub-icon{
+      background: @blue !important;
+    }
+  }
+}
 </style>

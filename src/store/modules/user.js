@@ -5,6 +5,7 @@ const state = {
   id: '',
   name: '',
   avatar: '',
+  describe: '数学,英语,化学',
   role: '',
   regionId: '',
   periodId: '',
@@ -20,6 +21,9 @@ const mutations = {
   },
   [types.SET_USER_AVATAR](state, avatar) {
     state.avatar = avatar
+  },
+  [types.SET_USER_DESCRIBE](state, describe) {
+    state.describe = describe
   },
   [types.SET_USER_ROLE](state, role) {
     state.role = role
@@ -42,6 +46,7 @@ const actions = {
       commit(types.SET_USRE_ID, res.data.id)
       commit(types.SET_USER_NAME, res.data.name)
       commit(types.SET_USER_AVATAR, res.data.avatar)
+      commit(types.SET_USER_DESCRIBE, res.data.describe)
       commit(types.SET_USER_ROLE, res.data.role)
       commit(types.SET_USER_REGIONID, res.data.regionId)
       commit(types.SET_USER_PERIODID, res.data.periodId)

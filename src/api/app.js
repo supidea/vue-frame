@@ -10,5 +10,9 @@ export default {
   // 获取教学步骤
   getTeacherSteps() {
     return fetch.get(`/lecturesuit/teachingsteps`)
+  },
+  // 根据年级ID获取同学段下其他年级
+  getGradeList(gradeId) {
+    return fetch.get('/user/schedule/grade/list', { params: { gradeId } })
   }
 }

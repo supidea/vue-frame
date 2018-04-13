@@ -1,23 +1,23 @@
 <template>
   <el-popover placement="right" width="280" trigger="hover">
     <p class="schedule-table-course__txt">
-      <span>上课时间：</span>{{`${data.courseDate} ${data.startTime}-${data.endTime}`}}</p>
+      <em>上课时间：</em><span>{{`${data.courseDate} ${data.startTime}-${data.endTime}`}}</span></p>
     <p class="schedule-table-course__txt">
-      <span>上课地点：</span>{{data.branchName}}</p>
+      <em>上课地点：</em><span>{{data.branchName}}</span></p>
     <p class="schedule-table-course__txt" v-if="data.schedStatusName === '正'">
-      <span>年级：</span>{{data.gradeName}}</p>
+      <em>年级：</em><span>{{data.gradeName}}</span></p>
     <p class="schedule-table-course__txt">
-      <span>学生名称：</span>{{data.studentName}}</p>
+      <em>学生名称：</em><span>{{data.studentName}}</span></p>
     <p class="schedule-table-course__txt">
-      <span>学管师：</span>{{data.courseManagerName}}</p>
+      <em>学管师：</em><span>{{data.courseManagerName}}</span></p>
     <p class="schedule-table-course__txt" v-if="data.schedStatusName === '正'">
-      <span>讲义套件：</span>{{data.lectureSuitName}}</p>
+      <em>讲义套件：</em><span>{{data.lectureSuitName}}</span></p>
     <p class="schedule-table-course__txt" v-if="data.bandingFlag">
       <el-button type="primary" size="mini">查看</el-button>
-      <el-button type="warning" size="mini">解除绑定</el-button>
+      <el-button type="warning" size="mini" v-if="canDo" @click="unbind(data)">解除绑定</el-button>
     </p>
-    <p class="schedule-table-course__txt" v-else-if="data.schedStatusName === '正'">
-      <el-button type="primary" size="mini">去绑定</el-button>
+    <p class="schedule-table-course__txt" v-else-if="data.schedStatusName === '正' && canDo">
+      <el-button type="primary" size="mini" @click="bind(data)">去绑定</el-button>
     </p>
     <span :style="{height: data.height, top: data.top, 'margin-left': ml + 'px', left: data.left}" class="schedule-table-course" :sign="data.schedStatusName" slot="reference" :class="{'is-bind': data.bandingFlag,'is-fix': data.schedStatusName === '预'}">
       <var>{{data.subjectName}}</var>
@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import moment from 'moment'
 export default {
   props: {
     data: {
@@ -33,7 +34,9 @@ export default {
       default: () => {
         return {}
       }
-    }
+    },
+    bind: Function,
+    unbind: Function
   },
   computed: {
     ml() {
@@ -42,6 +45,10 @@ export default {
       } else {
         return this.data.pos * 34 + 10
       }
+    },
+    canDo() {
+      let b = moment(`${this.data.courseDate} ${this.data.startTime}`)
+      return moment().diff(b) < 0
     }
   }
 }
@@ -83,10 +90,15 @@ export default {
     padding: 3px 0;
     font-size: 12px;
     display: flex;
-    & > span {
+    align-items: baseline;
+    & > em {
       width: 65px;
       text-align: right;
       margin-right: 5px;
+      font-style: normal
+    }
+    & > span{
+      flex: 1;
     }
   }
   &.is-bind {

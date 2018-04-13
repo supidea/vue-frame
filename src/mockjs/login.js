@@ -7,6 +7,7 @@ const getUserInfo = Mock.mock({
     id: '@id',
     name: '@cname',
     avatar: Mock.Random.image('60x60'),
+    describe: '@ctitle',
     role: 'admin',
     periodId: 10001,
     regionId: 153,
