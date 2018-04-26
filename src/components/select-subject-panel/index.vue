@@ -93,11 +93,10 @@ export default {
 </script>
 
 <style lang="less">
-@import url('../../assets/styles/variables.less');
 .select-subject-panel {
   &__title {
     font-size: 12px;
-    border-bottom: 1px solid @baseBorderColor;
+    border-bottom: var(--border);
     padding-bottom: 10px;
     margin-bottom: 15px;
   }

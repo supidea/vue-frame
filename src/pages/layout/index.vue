@@ -47,10 +47,8 @@ export default {
 </script>
 
 <style lang="less">
-@import '../../assets/styles/variables.less';
-@sideMenuItemActiveBgc: #daebff;
 .l-side {
-  background: @blue;
+  background: var(--blue);
   display: flex;
   flex-direction: column;
   overflow: visible;
@@ -67,7 +65,7 @@ export default {
 }
 .l-header{
   background: #fff;
-  border-bottom: 1px solid @baseBorderColor;
+  border-bottom: var(--border);
 }
 .l-main {
   display: flex;

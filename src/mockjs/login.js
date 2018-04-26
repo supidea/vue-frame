@@ -149,7 +149,7 @@ const getUserInfo = Mock.mock({
           {
             path: '/my/group',
             name: 'My_Group',
-            componentPath: 'my/group/layout',
+            componentPath: 'group/layout',
             redirect: '/my/group/lecture',
             meta: {
               title: '组讲义'
@@ -162,7 +162,7 @@ const getUserInfo = Mock.mock({
                   title: '我的讲义',
                   hidden: true
                 },
-                componentPath: 'my/group/lecture/list'
+                componentPath: 'group/lecture/list'
               },
               {
                 path: '/my/group/lecture/:id/edit',
@@ -189,7 +189,7 @@ const getUserInfo = Mock.mock({
                   title: '讲义套件',
                   hidden: true
                 },
-                componentPath: 'my/group/lecture-suite/index'
+                componentPath: 'group/lecture-suite/index'
               },
               {
                 path: '/my/group/lecture-suite/:id',

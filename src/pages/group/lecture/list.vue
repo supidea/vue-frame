@@ -1,6 +1,7 @@
 <template>
   <div>
     <v-search-bar class="l-mb" placeholder="请输入讲义名称" :value="searchKey" :loading="loading" @search="search" size="small" style="width: 300px" />
+    <v-topic-filter-panel class="l-mb" label-width="80px" :type="['gradeId','courseTypeId','productCode']" :value.sync="selectorResult" @change="filterList" />
     <v-table border :data="tableData" v-loading="loading" :columns="columns" header-row-class-name="m-table-hd" class="m-table" />
     <div class="l-mt l-tar" v-if="pageTotal > 0">
       <el-pagination background layout="total, prev, pager, next" @current-change="changePage" :current-page="currentPage" :page-size="pageSize" :total="pageTotal" class="m-pagination">
@@ -10,12 +11,14 @@
 </template>
 
 <script>
-import vSearchBar from '../../../../components/search-bar'
-import vTable from '../../../../components/table'
-import { lecture } from '../../../../api'
+import vSearchBar from '../../../components/search-bar'
+import vTopicFilterPanel from '../../../components/topic-filter-panel'
+import vTable from '../../../components/table'
+import { lecture } from '../../../api'
 import columns from './columns'
 export default {
   components: {
+    vTopicFilterPanel,
     vSearchBar,
     vTable
   },
@@ -23,6 +26,7 @@ export default {
     return {
       columns: columns(this),
       tableData: [],
+      selectorResult: {},
       searchKey: '',
       loading: false,
       currentPage: 1,
@@ -38,7 +42,6 @@ export default {
     async getLectureList({
       currentPage = 1,
       pageSize = 10,
-      initFlag = true,
       ...params
     } = {}) {
       this.loading = true
@@ -46,7 +49,6 @@ export default {
         let res = await lecture.getLectureList({
           currentPage,
           pageSize,
-          initFlag,
           ...params
         })
         this.currentPage = res.data.currentPage || 0
@@ -68,6 +70,7 @@ export default {
     changePage(currentPage) {
       this.getLectureList({
         currentPage,
+        ...this.selectorResult,
         name: this.searchKey
       })
     },
@@ -81,6 +84,14 @@ export default {
       } catch (e) {
         e !== 'cancel' && this.$message.error(e)
       }
+    },
+    // 筛选面板筛选事件
+    filterList(val) {
+      this.selectorResult = val
+      this.getLectureList({
+        ...this.selectorResult,
+        name: this.searchKey
+      })
     }
   }
 }

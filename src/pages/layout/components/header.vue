@@ -57,7 +57,6 @@ export default {
 </script>
 
 <style lang="less">
-@import '../../../assets/styles/variables.less';
 .main-header {
   display: flex;
   align-items: center;
@@ -74,7 +73,7 @@ export default {
     text-align: center;
     color: #fff;
     font-size: 12px;
-    background-color: @blue;
+    background-color: var(--blue);
     border-radius: 50%;
     cursor: pointer;
     transition: transform 0.3s ease-out;

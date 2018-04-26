@@ -41,7 +41,6 @@ export default {
 </script>
 
 <style lang="less">
-@import url('../../assets/styles/variables.less');
 .m-steps{
   padding: 0;
   margin: 0;
@@ -83,10 +82,10 @@ export default {
     padding: 0 0 10px 10px
   }
   &__item.is-active &__icon{
-    background-color: @blue
+    background-color: var(--blue)
   }
   &__item.is-active &__bd{
-    color: @blue
+    color: var(--blue)
   }
  }
  </style>

@@ -33,7 +33,6 @@ export default {
 </script>
 
 <style lang="less">
-@import url('../../../assets/styles/variables.less');
 .tb-list{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -54,14 +53,14 @@ export default {
     }
   }
   &__item{
-    border: 1px solid @baseBorderColor;
+    border: var(--blue);
     background-color: #fff;
     padding: 10px;
     cursor: pointer;
-    border-radius: @borderRadiusSmall;
+    border-radius: var(--border-radius-small);
   }
   &__hd{
-    border-bottom: 1px dashed @baseBorderColor;
+    border-bottom: var(--blue);
     padding-bottom: 10px;
     margin-bottom: 10px;
     display: flex;
@@ -73,7 +72,7 @@ export default {
     & > i {
       font-size: 34px;
       line-height: 40px;
-      color: @blue;
+      color: var(--blue);
     }
   }
   &__tit{
@@ -91,7 +90,7 @@ export default {
     display: flex;
     justify-content: space-between;
     font-size: 12px;
-    color: @gray;
+    color: var(--gray);
   }
   &__ft {
     margin-top: 5px;
@@ -106,7 +105,7 @@ export default {
   }
   &__count > em {
     padding: 0 3px;
-    color: @blue;
+    color: var(--blue);
   }
 }
 </style>

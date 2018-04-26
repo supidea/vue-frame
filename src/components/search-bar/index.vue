@@ -33,8 +33,8 @@ export default {
 
 <style lang="less">
 .search-bar .el-input-group__append {
-  background-color: #409eff;
-  border-color: #409eff;
+  background-color: var(--blue);
+  border-color: var(--blue);
   color: #fff;
 }
 </style>

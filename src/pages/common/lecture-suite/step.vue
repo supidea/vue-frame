@@ -17,19 +17,18 @@ export default {
 </script>
 
 <style lang="less">
-@import url(../../../assets/styles/variables.less);
 .lecture-suite-steps{
   display: flex;
   justify-content: space-between;
   line-height: 56px;
   height: 56px;
-  border: 1px dashed @blue;
+  border: 1px dashed var(--blue);
   padding: 0 20px;
   & > span{
-    color: @blue;
+    color: var(--blue);
     cursor: pointer;
     &:hover{
-      color: @red;
+      color: var(--red);
     }
   }
 }

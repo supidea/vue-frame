@@ -46,9 +46,8 @@ export default {
 </script>
 
 <style lang="less">
-@import '../../../assets/styles/variables.less';
-@sideMenuItemActiveBgc: #daebff;
 .side-menu {
+  --menu-active-color: #daebff;
   flex: 1;
   overflow-y: auto;
   &::-webkit-scrollbar {
@@ -61,9 +60,9 @@ export default {
       width: 200px;
     }
     .el-menu-item.is-active {
-      background: @sideMenuItemActiveBgc !important;
+      background: var(--menu-active-color) !important;
       .side-menu__sub-icon {
-        background-color: @blue;
+        background-color: var(--blue);
       }
     }
   }
@@ -91,10 +90,10 @@ export default {
     overflow-y: visible;
     .el-submenu.is-active {
       .el-submenu__title {
-        background-color: @sideMenuItemActiveBgc !important;
+        background-color: var(--menu-active-color) !important;
         & > span,
         & > i {
-          color: @blue;
+          color: var(--blue);
         }
       }
     }
@@ -102,10 +101,10 @@ export default {
 }
 .el-menu--vertical{
   .el-menu-item.is-active{
-    background: @sideMenuItemActiveBgc !important;
-    color: @blue;
+    background: var(--menu-active-color) !important;
+    color: var(--blue);
     .side-menu__sub-icon{
-      background: @blue !important;
+      background: var(--blue) !important;
     }
   }
 }

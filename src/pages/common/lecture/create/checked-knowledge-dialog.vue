@@ -106,9 +106,8 @@ export default {
 </script>
 
 <style lang="less">
-@import '../../../../assets/styles/variables.less';
 .checked-knowledge-dialog {
-  border: 1px solid @baseBorderColor;
+  border: var(--border);
   display: flex;
   & > .left,
   & > .right {
@@ -126,7 +125,7 @@ export default {
     }
   }
   & > .left {
-    border-right: 1px solid @baseBorderColor;
+    border-right: var(--border);
   }
   & > .right {
     & > .el-tag + .el-tag {
