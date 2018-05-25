@@ -31,16 +31,24 @@
         <v-video :data="item" v-for="(item, index) in data.videos" :key="index" />
       </div>
     </li>
+    <li class="m-qu-analy__item" v-if="showSrcTag && data.originTagList && data.originTagList.length > 0">
+      <div class="m-qu-analy__label">来源：</div>
+      <div class="m-qu-analy__con">
+        <v-tag :data="data.originTagList"/>
+      </div>
+    </li>
   </ul>
 </template>
 
 <script>
 import vAudio from './audio'
 import vVideo from './video'
+import vTag from './tag'
 export default {
   components: {
     vAudio,
-    vVideo
+    vVideo,
+    vTag
   },
   props: {
     data: {
@@ -50,7 +58,8 @@ export default {
       }
     },
     showVideo: Boolean,
-    showAudio: Boolean
+    showAudio: Boolean,
+    showSrcTag: Boolean
   }
 }
 </script>

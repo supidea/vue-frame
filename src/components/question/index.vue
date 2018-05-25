@@ -1,15 +1,9 @@
 <template>
   <div class="m-qu">
-    <v-tag :data="data.originTagList" v-if="showTag"/>
-    <v-item 
-      :data="data"
-      :show-analy="showAnaly" 
-      :show-score="showScore" 
-      :show-idx="showIdx" 
-      :show-audio="showAudio"
-      :show-video="showVideo"
-      :show-option="showOption"
-    />
+    <div class="m-qu-btns">
+      <slot name="btns" :item="$attrs.data"></slot>
+    </div>
+    <v-item v-bind="$attrs" v-on="$listeners" />
   </div>
 </template>
 
@@ -21,46 +15,52 @@ export default {
     vTag,
     vItem
   },
-  props: {
-    data: {
-      type: Object,
-      default: () => {
-        return {}
-      }
-    },
-    showAnaly: {
-      type: Boolean,
-      default: true
-    },
-    showAudio: {
-      type: Boolean,
-      default: true
-    },
-    showVideo: {
-      type: Boolean,
-      default: true
-    },
-    showTag: {
-      type: Boolean,
-      default: true
-    },
-    showOption: {
-      type: Boolean,
-      default: true
-    },
-    showScore: Boolean,
-    showIdx: Boolean
-  }
+  inheritAttrs: false
 }
 </script>
 
 <style lang="less">
 .m-qu {
-  --bg-color: #f7f7f7;
-  --text-color-hover: #20a0ff;
-  & + & {
-    margin-top: 20px;
+  --bg-color: rgb(248,248,248);
+  --text-color-hover: #fff;
+  --border-color: var(--text-color-hover);
+  --border: 1px solid var(--border-color);
+  padding: 20px;
+  position: relative;
+  border: var(--border);
+  font-size: 12px;
+  border-radius: 5px;
+  &.is-hover:hover{
+    --text-color-hover: #20a0ff;
   }
-  line-height: 1.6;
+  &.is-hover:hover &-btns{
+    display: inline-flex;
+  }
+  &-btns{
+    position: absolute;
+    border-bottom: 0 none;
+    top: -26px;
+    right: 20px;
+    border-radius: 5px 5px 0 0;
+    display: none;
+    -webkit-user-select: none;
+    border: var(--border);
+    &__itm{
+      font-size: 12px;
+      line-height: 24px;
+      height: 24px;
+      white-space: nowrap;
+      color: var(--text-color-hover);
+      padding: 0 20px;
+      cursor: pointer;
+      &:hover{
+        background: var(--text-color-hover);
+        color: #fff;
+      }
+    }
+    &__itm + &__itm{
+      border-left: var(--border);
+    }
+  }
 }
 </style>

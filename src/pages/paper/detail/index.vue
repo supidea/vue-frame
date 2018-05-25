@@ -1,7 +1,7 @@
 <template>
   <div class="p-paper-detail">
     <h2 class="p-paper-detail__tit">{{paperName}}</h2>
-    <v-question v-for="(item, index) in itemInfos" :key="index" :data="item" :show-score="true" :show-idx="true" />
+    <v-question v-for="(item, index) in itemInfos" :key="index" :data="item" :show-score="true" :show-idx="true" :idx="item.showNo || index+1" />
   </div>
 </template>
 
