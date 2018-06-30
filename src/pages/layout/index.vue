@@ -36,6 +36,7 @@ export default {
     vHeader
   },
   created() {
+    console.log('...')
     this.getBaseData('ALL')
   },
   methods: {
